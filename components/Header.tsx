@@ -33,15 +33,6 @@ export default function Header({ locale }: { locale: Locale }) {
           >
             {dict.nav.blog}
           </Link>
-          <a
-            href="https://galylio.com"
-            target="_blank"
-            rel="noopener"
-            className="hidden items-center gap-1.5 rounded-full px-3.5 py-2 text-sm font-medium text-muted transition-colors hover:bg-surface hover:text-foreground sm:flex"
-          >
-            Galylio
-            <span aria-hidden className="text-xs opacity-60">↗</span>
-          </a>
           <div className="ml-1 border-l border-border pl-2 sm:ml-2">
             <LocaleSwitcher locale={locale} />
           </div>

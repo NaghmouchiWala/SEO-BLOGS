@@ -57,15 +57,6 @@ export default async function HomePage({
                 {dict.home.heroCta}
                 <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
               </Link>
-              <a
-                href="https://galylio.com"
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center gap-2 rounded-full border border-border-strong px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-accent-2/50 hover:text-accent-2"
-              >
-                Galylio.com
-                <span aria-hidden className="text-xs opacity-60">↗</span>
-              </a>
             </div>
           </div>
         </Container>
