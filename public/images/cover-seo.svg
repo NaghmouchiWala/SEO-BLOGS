@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="b1" cx="25%" cy="75%" r="70%">
+      <stop offset="0%" stop-color="#38e4c8" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#101014" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="b2" cx="75%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#101014" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="#0b0b10"/>
+  <rect width="800" height="450" fill="url(#b1)"/>
+  <rect width="800" height="450" fill="url(#b2)"/>
+  <g stroke="#38e4c8" stroke-opacity="0.5" stroke-width="2" fill="none">
+    <polyline points="120,340 240,280 340,310 460,200 560,230 680,120"/>
+  </g>
+  <g fill="#38e4c8">
+    <circle cx="120" cy="340" r="5"/>
+    <circle cx="240" cy="280" r="5"/>
+    <circle cx="340" cy="310" r="5"/>
+    <circle cx="460" cy="200" r="5"/>
+    <circle cx="560" cy="230" r="5"/>
+    <circle cx="680" cy="120" r="7" fill="#ffffff"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.08">
+    <rect x="120" y="360" width="40" height="40" rx="4"/>
+    <rect x="180" y="360" width="40" height="40" rx="4"/>
+    <rect x="240" y="360" width="40" height="40" rx="4"/>
+    <rect x="300" y="360" width="40" height="40" rx="4"/>
+    <rect x="360" y="360" width="40" height="40" rx="4"/>
+    <rect x="420" y="360" width="40" height="40" rx="4"/>
+    <rect x="480" y="360" width="40" height="40" rx="4"/>
+    <rect x="540" y="360" width="40" height="40" rx="4"/>
+    <rect x="600" y="360" width="40" height="40" rx="4"/>
+    <rect x="660" y="360" width="40" height="40" rx="4"/>
+  </g>
+</svg>

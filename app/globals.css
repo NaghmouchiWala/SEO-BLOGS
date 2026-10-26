@@ -2,13 +2,17 @@
 
 :root {
   --background: #07070a;
-  --surface: #101014;
-  --surface-2: #16161b;
+  --surface: #0f0f13;
+  --surface-2: #17171d;
   --border: #242429;
-  --foreground: #f3f3f5;
+  --border-strong: #34343c;
+  --foreground: #f5f5f7;
   --muted: #9a9aa3;
+  --muted-2: #6f6f78;
   --accent: #7c5cff;
+  --accent-soft: #9d85ff;
   --accent-2: #38e4c8;
+  --accent-3: #ff5cab;
 }
 
 @theme inline {
@@ -16,22 +20,32 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
   --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
 }
 
 html {
   color-scheme: dark;
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 60%, rgba(255, 255, 255, 0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.25) 0%, transparent 100%);
+  background-attachment: fixed;
 }
 
 ::selection {
@@ -39,30 +53,37 @@ body {
   color: #07070a;
 }
 
+/* ---------- Article typography ---------- */
+
 .prose-points {
   color: var(--foreground);
-  line-height: 1.75;
+  line-height: 1.8;
+  font-size: 1.0625rem;
 }
 
 .prose-points h2 {
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
   font-weight: 700;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 1.1rem;
   color: var(--foreground);
   letter-spacing: -0.01em;
+  scroll-margin-top: 6rem;
 }
 
 .prose-points h3 {
-  font-size: 1.2rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 600;
-  margin-top: 2rem;
+  margin-top: 2.25rem;
   margin-bottom: 0.75rem;
   color: var(--foreground);
+  scroll-margin-top: 6rem;
 }
 
 .prose-points p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
   color: #d4d4db;
 }
 
@@ -70,39 +91,61 @@ body {
   color: var(--accent-2);
   text-decoration: underline;
   text-decoration-color: rgba(56, 228, 200, 0.35);
-  text-underline-offset: 2px;
-  transition: text-decoration-color 0.15s ease;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
 }
 
 .prose-points a:hover {
   text-decoration-color: var(--accent-2);
+  color: #5ff4da;
 }
 
 .prose-points ul,
 .prose-points ol {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.4rem;
   padding-left: 1.5rem;
   color: #d4d4db;
 }
 
 .prose-points li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .prose-points ul {
-  list-style-type: disc;
+  list-style: none;
+  padding-left: 0.25rem;
+}
+
+.prose-points ul li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.prose-points ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
 .prose-points ol {
   list-style-type: decimal;
+  padding-left: 1.4rem;
 }
 
 .prose-points blockquote {
   border-left: 3px solid var(--accent);
-  padding-left: 1rem;
-  margin: 1.5rem 0;
+  background: linear-gradient(90deg, rgba(124, 92, 255, 0.08), transparent);
+  padding: 0.75rem 1.25rem;
+  margin: 1.75rem 0;
   color: var(--muted);
   font-style: italic;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .prose-points strong {
@@ -118,13 +161,108 @@ body {
   font-size: 0.9em;
 }
 
+.prose-points hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* ---------- Decorative backgrounds ---------- */
+
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
 .glow {
   background: radial-gradient(60% 60% at 50% 0%, rgba(124, 92, 255, 0.25), transparent 70%);
+}
+
+.hero-bg {
+  background-image:
+    linear-gradient(180deg, rgba(7, 7, 10, 0.2) 0%, rgba(7, 7, 10, 0.75) 60%, rgba(7, 7, 10, 1) 100%),
+    url("/images/hero-mesh.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.card-glow {
+  position: relative;
+  isolation: isolate;
+}
+
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0), rgba(124, 92, 255, 0));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  transition: background 0.25s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.card-glow:hover::before {
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.8), rgba(56, 228, 200, 0.5));
+}
+
+/* ---------- Hashtag pills ---------- */
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--surface-2);
+  transition: all 0.15s ease;
+}
+
+.tag-pill:hover {
+  color: var(--accent-2);
+  border-color: rgba(56, 228, 200, 0.4);
+  background: rgba(56, 228, 200, 0.08);
+}
+
+/* ---------- Animated gradient text ---------- */
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--accent-soft), var(--accent-2) 50%, var(--accent-3));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

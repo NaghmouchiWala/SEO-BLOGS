@@ -16,6 +16,7 @@ export type ArticleMeta = {
   category: string;
   coverAlt: string;
   readingMinutes: number;
+  tags: string[];
 };
 
 export type Article = ArticleMeta & {
@@ -51,6 +52,7 @@ export function getArticle(locale: Locale, slug: string): Article | null {
     category: data.category,
     coverAlt: data.coverAlt ?? data.title,
     readingMinutes: Math.max(1, Math.round(stats.minutes)),
+    tags: Array.isArray(data.tags) ? data.tags : [],
     content,
   };
 }
