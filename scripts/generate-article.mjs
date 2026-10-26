@@ -110,8 +110,10 @@ async function callGroq(messages, { json = false, maxTokens = 6000 } = {}) {
 
 const STYLE_GUIDE = `Tu écris pour le blog Points.tn, un blog tunisien sur la tech, l'IA et l'e-commerce.
 Style : articles de fond en français, 700 à 950 mots, ton informatif et direct, jamais putaclic.
-Structure : une introduction qui pose un problème concret, puis 3 à 5 sections avec des titres H2 (##),
-une conclusion qui ouvre sur une recommandation pratique.
+Structure : une introduction qui pose un problème concret, puis 3 à 5 sections avec des titres H2 (##)
+descriptifs (pas de numérotation du type "1. ..."), et un dernier paragraphe de conclusion qui ouvre sur
+une recommandation pratique — sans titre "Conclusion" séparé, il s'enchaîne juste après la dernière
+section comme un paragraphe normal.
 N'invente et ne cite JAMAIS le nom d'une entreprise, d'un produit, d'un outil ou d'une marque réelle
 ou fictive — y compris pour illustrer un exemple — SAUF si le prompt te fournit explicitement un lien
 précis à utiliser. Si aucun lien ne t'est fourni, n'en mentionne aucun, même un nom générique inventé
@@ -206,7 +208,37 @@ first paragraph, no duplicate H1 title):
   return { title: parsed.title, frontmatter };
 }
 
+const MIN_DAYS_BETWEEN_ARTICLES = 2;
+
+function mostRecentArticleDate() {
+  let latest = null;
+  if (!fs.existsSync(CONTENT_FR)) return null;
+  for (const f of fs.readdirSync(CONTENT_FR)) {
+    if (!f.endsWith(".mdx")) continue;
+    const raw = fs.readFileSync(path.join(CONTENT_FR, f), "utf8");
+    const m = raw.match(/^date:\s*"([^"]+)"/m);
+    if (!m) continue;
+    const d = new Date(m[1]);
+    if (!latest || d > latest) latest = d;
+  }
+  return latest;
+}
+
 async function main() {
+  // Cron runs this daily (see generate-points-tn-article.sh); this check is
+  // what actually enforces the 2-day cadence, since cron's day-of-month
+  // field can't express "every N days" reliably across month boundaries.
+  const latest = mostRecentArticleDate();
+  if (latest) {
+    const daysSince = (Date.now() - latest.getTime()) / 86400000;
+    if (daysSince < MIN_DAYS_BETWEEN_ARTICLES) {
+      console.log(
+        `Last article was ${daysSince.toFixed(1)} days ago, under the ${MIN_DAYS_BETWEEN_ARTICLES}-day minimum. Skipping.`
+      );
+      return;
+    }
+  }
+
   const existingSlugs = readExistingSlugs();
   const existingTitles = readExistingTitles();
 
