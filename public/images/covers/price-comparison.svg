@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450">
+  <defs>
+    <radialGradient id="pc1" cx="25%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#ffb84c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0b10" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pc2" cx="80%" cy="75%" r="60%">
+      <stop offset="0%" stop-color="#38e4c8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#0b0b10" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="#0b0b10"/>
+  <rect width="800" height="450" fill="url(#pc1)"/>
+  <rect width="800" height="450" fill="url(#pc2)"/>
+
+  <g fill="#17171d" stroke="#242429">
+    <rect x="140" y="130" width="200" height="220" rx="10"/>
+    <rect x="460" y="130" width="200" height="220" rx="10"/>
+  </g>
+  <rect x="160" y="150" width="160" height="100" rx="6" fill="#121218"/>
+  <rect x="480" y="150" width="160" height="100" rx="6" fill="#121218"/>
+
+  <g fill="#6f6f78" font-family="monospace" font-size="13">
+    <text x="175" y="205">phone X</text>
+    <text x="495" y="205">phone X</text>
+  </g>
+
+  <text x="175" y="290" font-family="var(--font-display), sans-serif" font-size="26" font-weight="bold" fill="#ff5cab">1450 DT</text>
+  <text x="495" y="290" font-family="var(--font-display), sans-serif" font-size="26" font-weight="bold" fill="#38e4c8">1180 DT</text>
+
+  <g stroke="#38e4c8" stroke-width="2" fill="none">
+    <rect x="460" y="130" width="200" height="220" rx="10" stroke-opacity="0.9"/>
+  </g>
+  <g fill="#38e4c8">
+    <circle cx="660" cy="130" r="14"/>
+  </g>
+  <path d="M654,130 L658,134 L666,124" stroke="#07070a" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M340,240 L460,240" stroke="#ffffff" stroke-opacity="0.2" stroke-width="2" stroke-dasharray="4 5"/>
+  <text x="365" y="232" font-family="monospace" font-size="12" fill="#6f6f78">VS</text>
+</svg>

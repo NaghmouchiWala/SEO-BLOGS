@@ -9,7 +9,7 @@ import LocaleSwitcher from "@/components/LocaleSwitcher";
 import TagPill from "@/components/TagPill";
 import ShareBar from "@/components/ShareBar";
 import { getAllArticles, getAllSlugs, getArticle } from "@/lib/articles";
-import { imageForCategory } from "@/lib/categories";
+import { coverForArticle } from "@/lib/covers";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
 
 const SITE_URL = "https://points.tn";
@@ -29,7 +29,7 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const article = getArticle(locale, slug);
   if (!article) return {};
-  const cover = imageForCategory(article.category);
+  const cover = coverForArticle(article.slug, article.category);
   return {
     title: `${article.title} — Points.tn`,
     description: article.description,
@@ -89,7 +89,7 @@ export default async function ArticlePage({
   const related = getAllArticles(loc)
     .filter((a) => a.slug !== slug)
     .slice(0, 2);
-  const cover = imageForCategory(article.category);
+  const cover = coverForArticle(article.slug, article.category);
   const pageUrl = `${SITE_URL}/${loc}/blog/${slug}`;
 
   const date = new Date(article.date).toLocaleDateString(loc === "fr" ? "fr-FR" : "en-US", {

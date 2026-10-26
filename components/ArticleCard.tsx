@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { ArticleMeta } from "@/lib/articles";
-import { imageForCategory } from "@/lib/categories";
+import { coverForArticle } from "@/lib/covers";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
 export default function ArticleCard({
@@ -19,7 +19,7 @@ export default function ArticleCard({
     month: "long",
     day: "numeric",
   });
-  const cover = imageForCategory(article.category);
+  const cover = coverForArticle(article.slug, article.category);
 
   return (
     <Link
