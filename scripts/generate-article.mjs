@@ -133,24 +133,28 @@ Propose UN nouveau sujet d'article sur une tendance tech récente et concrète (
 e-commerce, cybersécurité, ou transformation digitale), pertinent pour un lectorat tunisien/francophone.
 Le sujet doit être différent des titres ci-dessus, pas une simple reformulation.
 
+Choisis TOUJOURS deux projets différents parmi cette liste à mentionner dans l'article, même si le lien
+avec le sujet demande un angle un peu plus large : 1111.tn, Tdiscount.tn, Galylio, go2code, geo4seo.
+Il y a toujours un angle plausible — ne réponds jamais "aucun".
+
 Réponds uniquement en JSON avec ce format exact :
-{"topic": "description du sujet en une phrase", "category": "une parmi: Intelligence Artificielle, SEO & E-commerce, Business & Innovation, E-commerce & Bons plans", "project_link": "nom du projet le plus pertinent parmi: 1111.tn, Tdiscount.tn, Galylio, go2code, geo4seo, ou none si aucun ne convient naturellement"}`;
+{"topic": "description du sujet en une phrase", "category": "une parmi: Intelligence Artificielle, SEO & E-commerce, Business & Innovation, E-commerce & Bons plans", "project_links": ["premier nom de projet, parmi: 1111.tn, Tdiscount.tn, Galylio, go2code, geo4seo", "deuxième nom de projet, différent du premier, parmi la même liste"]}`;
 
   const raw = await callGroq([{ role: "user", content: prompt }], { json: true });
   return JSON.parse(raw);
 }
 
-async function writeArticle({ locale, topic, category, projectLink, todayISO }) {
+async function writeArticle({ locale, topic, category, projectLinks, todayISO }) {
   const prompt =
     locale === "fr"
       ? `${STYLE_GUIDE}
 
 Sujet : ${topic}
-${
-  projectLink
-    ? `Intègre ce lien une seule fois, naturellement : ${projectLink.fr} (${projectLink.about_fr}).`
-    : "N'inclus aucun lien vers un projet externe dans cet article."
-}
+Intègre ces deux liens, chacun une seule fois, naturellement et à des endroits différents de l'article
+(pas l'un juste après l'autre) :
+- ${projectLinks[0].fr} (${projectLinks[0].about_fr})
+- ${projectLinks[1].fr} (${projectLinks[1].about_fr})
+Ces deux liens sont obligatoires dans le corps de l'article.
 
 Réponds UNIQUEMENT en JSON, et le JSON entier (y compris "body") doit être rédigé en FRANÇAIS,
 avec ce format exact (le champ "body" contient le markdown complet de l'article SANS le frontmatter,
@@ -171,11 +175,10 @@ timeframes, or quotes attributed to a real person — stick to qualitative claim
 a precise figure. No AI-sounding filler phrases ("in today's world", "in the digital age").
 
 Topic (translate this into a proper English article, do not write in French): ${topic}
-${
-  projectLink
-    ? `Work this link in once, naturally: ${projectLink.en} (${projectLink.about_en}).`
-    : "Do not include any external project link in this article."
-}
+Work both of these links in naturally, each once, at different points in the article (not back to back):
+- ${projectLinks[0].en} (${projectLinks[0].about_en})
+- ${projectLinks[1].en} (${projectLinks[1].about_en})
+Both links are required in the article body.
 
 Respond ONLY in JSON, and the ENTIRE JSON (including "body") must be written in ENGLISH, with this
 exact format ("body" is the full article markdown WITHOUT the frontmatter, starting directly with the
@@ -243,20 +246,28 @@ async function main() {
   const existingTitles = readExistingTitles();
 
   console.log("Picking a topic...");
-  const { topic, category: categoryLabelFr, project_link } = await pickTopic(existingTitles);
+  const { topic, category: categoryLabelFr, project_links } = await pickTopic(existingTitles);
   const category = CATEGORIES.find((c) => c.fr === categoryLabelFr) ?? CATEGORIES[0];
-  const projectLink =
-    project_link && project_link !== "none"
-      ? PROJECT_LINKS.find((p) => p.name.toLowerCase() === project_link.toLowerCase())
-      : null;
+
+  const resolvedLinks = (project_links ?? [])
+    .map((name) => PROJECT_LINKS.find((p) => p.name.toLowerCase() === String(name).toLowerCase()))
+    .filter(Boolean);
+  // Always need exactly two distinct links; pad from PROJECT_LINKS (in
+  // order) if the model returned fewer than two or any duplicates/unknowns,
+  // so a bad model response can never silently fall back to zero links.
+  const projectLinks = [...new Set(resolvedLinks)];
+  for (const candidate of PROJECT_LINKS) {
+    if (projectLinks.length >= 2) break;
+    if (!projectLinks.includes(candidate)) projectLinks.push(candidate);
+  }
 
   console.log(`Topic: ${topic}`);
-  console.log(`Category: ${category.fr} / Project link: ${projectLink?.name ?? "none"}`);
+  console.log(`Category: ${category.fr} / Project links: ${projectLinks.map((p) => p.name).join(", ")}`);
 
   const todayISO = new Date().toISOString().slice(0, 10);
 
   console.log("Writing FR article...");
-  const frArticle = await writeArticle({ locale: "fr", topic, category, projectLink, todayISO });
+  const frArticle = await writeArticle({ locale: "fr", topic, category, projectLinks, todayISO });
   let slug = slugify(frArticle.title);
   let suffix = 2;
   while (existingSlugs.has(slug)) {
@@ -265,7 +276,7 @@ async function main() {
   }
 
   console.log("Writing EN article...");
-  const enArticle = await writeArticle({ locale: "en", topic, category, projectLink, todayISO });
+  const enArticle = await writeArticle({ locale: "en", topic, category, projectLinks, todayISO });
   let enSlug = slugify(enArticle.title);
   suffix = 2;
   while (existingSlugs.has(enSlug)) {
