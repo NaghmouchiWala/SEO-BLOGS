@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="e1" cx="25%" cy="25%" r="70%">
+      <stop offset="0%" stop-color="#7c5cff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#101014" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="e2" cx="80%" cy="75%" r="65%">
+      <stop offset="0%" stop-color="#38e4c8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#101014" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="#0b0b10"/>
+  <rect width="800" height="450" fill="url(#e1)"/>
+  <rect width="800" height="450" fill="url(#e2)"/>
+  <!-- stylized appliance body -->
+  <g stroke="#9d85ff" stroke-opacity="0.6" stroke-width="2" fill="none">
+    <rect x="300" y="110" width="200" height="260" rx="16"/>
+    <line x1="300" y1="160" x2="500" y2="160"/>
+  </g>
+  <!-- control dot row -->
+  <g fill="#38e4c8">
+    <circle cx="330" cy="135" r="5"/>
+    <circle cx="355" cy="135" r="5" fill-opacity="0.6"/>
+    <circle cx="380" cy="135" r="5" fill-opacity="0.35"/>
+  </g>
+  <!-- porthole / drum -->
+  <g stroke="#7c5cff" stroke-opacity="0.7" stroke-width="2" fill="none">
+    <circle cx="400" cy="260" r="70"/>
+    <circle cx="400" cy="260" r="48" stroke-dasharray="4 6"/>
+  </g>
+  <g fill="#9d85ff" fill-opacity="0.8">
+    <circle cx="400" cy="260" r="6"/>
+  </g>
+  <!-- connectivity waves suggesting smart/connected appliance -->
+  <g stroke="#38e4c8" stroke-opacity="0.55" stroke-width="2" fill="none">
+    <path d="M540,150 Q565,135 540,120"/>
+    <path d="M555,160 Q595,135 555,105"/>
+  </g>
+</svg>
