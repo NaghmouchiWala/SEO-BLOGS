@@ -5,7 +5,12 @@ const COOKIE_NAME = "satellite_dashboard_session";
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  if (pathname.startsWith("/login") || pathname.startsWith("/api/login")) {
+  // Brand images are needed by the login page itself, before there is a session.
+  if (
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/api/login") ||
+    /^\/(logo_transparent(_light)?\.webp|galylio-mark\.svg)$/.test(pathname)
+  ) {
     return NextResponse.next();
   }
 

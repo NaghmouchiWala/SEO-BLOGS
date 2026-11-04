@@ -87,23 +87,15 @@ function isPublished(site: SiteConfig, slug: string): boolean {
   return homepage.includes(`/pages/${slug}/`);
 }
 
-// Only folders that were auto-generated (tracked via a marker file written
-// at generation time, or — for posts generated before the dashboard
-// existed — any post folder currently linked from the syndicated
-// (go2code-managed) block) are listed, not the site's original ~130-170
-// pre-existing WordPress-export posts.
+// Only folders that were auto-generated are listed — identified solely by
+// the .dashboard-meta.json marker the generator writes at creation time
+// (and which is backfilled for articles generated before this marker
+// existed). This deliberately does NOT infer from "linked in the
+// syndicated block": that block also contains the site's original
+// pre-existing template post(s) from an earlier manual content rollout,
+// which are NOT auto-generated and must never appear here.
 function listGeneratedSlugs(site: SiteConfig): string[] {
-  const homepage = fs.readFileSync(homepagePath(site), "utf8");
-  const start = homepage.indexOf("<!-- GO2CODE_SYNDICATED_START -->");
-  const end = homepage.indexOf("<!-- GO2CODE_SYNDICATED_END -->");
-  const block = start !== -1 && end !== -1 ? homepage.slice(start, end) : "";
-  const slugs = new Set(
-    [...block.matchAll(/\/pages\/([a-z0-9-]+)\//g)].map((m) => m[1])
-  );
-
-  // Also include any post folder with a .dashboard-meta.json (covers posts
-  // unpublished from the homepage strip, which would otherwise disappear
-  // from this list entirely).
+  const slugs = new Set<string>();
   const dir = pagesDir(site);
   if (fs.existsSync(dir)) {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
