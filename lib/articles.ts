@@ -57,6 +57,22 @@ export function getArticle(locale: Locale, slug: string): Article | null {
   };
 }
 
+/**
+ * The article in the other language that was generated with this one.
+ * French and English articles are written together on the same day but get
+ * different slugs, so they are paired by publication date. Returns null when
+ * there is not exactly one match (never guess, a wrong hreflang is worse than none).
+ */
+export function getTranslationSlug(locale: Locale, slug: string): string | null {
+  const article = getArticle(locale, slug);
+  if (!article) return null;
+  const other: Locale = locale === "fr" ? "en" : "fr";
+  const matches = getAllSlugs(other)
+    .map((s) => getArticle(other, s))
+    .filter((a): a is Article => a !== null && a.date === article.date);
+  return matches.length === 1 ? matches[0].slug : null;
+}
+
 export function getAllArticles(locale: Locale): ArticleMeta[] {
   return getAllSlugs(locale)
     .map((slug) => getArticle(locale, slug))

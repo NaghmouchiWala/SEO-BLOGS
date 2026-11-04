@@ -8,7 +8,7 @@ import ArticleCard from "@/components/ArticleCard";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import TagPill from "@/components/TagPill";
 import ShareBar from "@/components/ShareBar";
-import { getAllArticles, getAllSlugs, getArticle } from "@/lib/articles";
+import { getAllArticles, getAllSlugs, getArticle, getTranslationSlug } from "@/lib/articles";
 import { coverForArticle } from "@/lib/covers";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -37,10 +37,14 @@ export async function generateMetadata({
     keywords: article.tags,
     alternates: {
       canonical: `${SITE_URL}/${locale}/blog/${slug}`,
-      languages: {
-        fr: `${SITE_URL}/fr/blog/${slug}`,
-        en: `${SITE_URL}/en/blog/${slug}`,
-      },
+      // hreflang only for pages that really exist: each language has its own slug.
+      languages: (() => {
+        const alt = getTranslationSlug(locale, slug);
+        const other = locale === "fr" ? "en" : "fr";
+        return alt
+          ? { [locale]: `${SITE_URL}/${locale}/blog/${slug}`, [other]: `${SITE_URL}/${other}/blog/${alt}` }
+          : { [locale]: `${SITE_URL}/${locale}/blog/${slug}` };
+      })(),
     },
     openGraph: {
       title: article.title,
@@ -161,7 +165,7 @@ export default async function ArticlePage({
             >
               ← {dict.article.backToBlog}
             </Link>
-            <LocaleSwitcher locale={loc} altSlug={slug} />
+            <LocaleSwitcher locale={loc} altSlug={getTranslationSlug(loc, slug) ?? undefined} />
           </div>
           <span className="mb-4 inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-2">
             {article.category}
