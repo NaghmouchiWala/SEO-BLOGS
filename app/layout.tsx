@@ -23,6 +23,8 @@ export const metadata: Metadata = {
   description:
     "Points.tn covers artificial intelligence, SEO automation and digital business, from Tunisia to the world.",
   robots: { index: true, follow: true },
+  // Bing Webmaster Tools site verification (renders <meta name="msvalidate.01">).
+  verification: { other: { "msvalidate.01": "570B7AC2B76698517D56D51334E68513" } },
 };
 
 const organizationJsonLd = {
