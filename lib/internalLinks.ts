@@ -122,7 +122,8 @@ export async function analyzeInternalLinks(domain: string, force = false): Promi
       inbound: inbound.get(k)?.size ?? 0,
       outbound: outbound.get(k) ?? 0,
     }));
-    const nonHome = rows.filter((r) => r.path !== "/" && !/\/category(\/|$)|\/page\/\d+/.test(r.path));
+    // Homepages ("/" and per-language roots like "/fr") and archive pages are hubs, not articles.
+    const nonHome = rows.filter((r) => r.path !== "/" && !/^\/[a-z]{2}$/.test(r.path) && !/\/category(\/|$)|\/page\/\d+/.test(r.path));
 
     // Broken internal links: targets that are not in the sitemap, checked once each.
     const toCheck = [...unknownTargets.keys()].slice(0, 80);
