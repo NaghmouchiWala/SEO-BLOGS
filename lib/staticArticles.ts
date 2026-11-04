@@ -59,9 +59,24 @@ function metaPath(site: SiteConfig, slug: string) {
   return path.join(pagesDir(site), slug, ".dashboard-meta.json");
 }
 
+// <title> is length-capped for search results (~60 chars), so prefer the
+// article's own <h1> which carries the full headline.
 function extractTitle(html: string): string {
+  const h1 = html.match(/<h1 class="(?:entry-title|page-title|wp-block-post-title[^"]*)">([^<]*)<\/h1>/);
+  if (h1 && h1[1].trim()) return h1[1].trim();
   const m = html.match(/<title>([^<]*)<\/title>/);
   return m ? m[1] : "";
+}
+
+// Same cap the generator applies to <title> (kept in sync with
+// trimAtWord in multisite-generator/generate-article.mjs).
+function trimAtWord(text: string, max: number): string {
+  const t = text.replace(/\s+/g, " ").trim();
+  if (t.length <= max) return t;
+  const slice = t.slice(0, max - 1);
+  const lastSpace = slice.lastIndexOf(" ");
+  const base = lastSpace > max * 0.6 ? slice.slice(0, lastSpace) : slice;
+  return base.replace(/[\s,;:.\-–—]+$/, "") + "…";
 }
 
 function extractExcerpt(html: string): string {
@@ -207,7 +222,7 @@ export function updateStaticArticleBody(
   let html = fs.readFileSync(indexPath, "utf8");
 
   if (updates.title !== undefined) {
-    html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(updates.title)}</title>`);
+    html = html.replace(/<title>[^<]*<\/title>/, `<title>${escapeHtml(trimAtWord(updates.title, 60))}</title>`);
     // Any <h1> that isn't the site's own site-title/branding heading gets
     // the new title — matches on being outside a "site-title" class, same
     // reasoning the generators use per theme.
