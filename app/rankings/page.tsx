@@ -27,7 +27,8 @@ const SETUP: Record<Tab, { title: string; steps: string }> = {
   },
   authority: {
     title: "Connect Open PageRank",
-    steps: "Get a free API key at domcop.com/openpagerank and set OPEN_PAGERANK_API_KEY in .env.local.",
+    steps:
+      "Sign in at openpagerank.keywordseverywhere.com/dashboard with a Keywords Everywhere API key, create a free Open PageRank key (30,000 domains/month) and set OPEN_PAGERANK_API_KEY in .env.local.",
   },
 };
 

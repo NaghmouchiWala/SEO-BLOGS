@@ -1,6 +1,9 @@
 // Open PageRank — free domain authority (0-10 scale, comparable in spirit to
-// Ahrefs DR) for any domain, ours or competitors'. Free API key:
-// https://www.domcop.com/openpagerank/ → set OPEN_PAGERANK_API_KEY.
+// Ahrefs DR) for any domain, ours or competitors'. The service moved from
+// DomCop to Keywords Everywhere (old DomCop keys no longer work): sign in at
+// https://openpagerank.keywordseverywhere.com/dashboard with a Keywords
+// Everywhere API key, mint a free OPR key (30,000 domains/month) and set
+// OPEN_PAGERANK_API_KEY.
 
 import { cached, HOUR } from "./cache";
 
@@ -14,7 +17,7 @@ export async function getAuthority(domains: string[], force = false): Promise<Au
   const key = `opr:${[...domains].sort().join(",")}`;
   return cached(key, 24 * HOUR, force, async () => {
     const qs = domains.map((d, i) => `domains[${i}]=${encodeURIComponent(d)}`).join("&");
-    const res = await fetch(`https://openpagerank.com/api/v1.0/getPageRank?${qs}`, {
+    const res = await fetch(`https://openpagerank.keywordseverywhere.com/api/v1.0/getPageRank?${qs}`, {
       headers: { "API-OPR": process.env.OPEN_PAGERANK_API_KEY! },
       signal: AbortSignal.timeout(30000),
       cache: "no-store",
