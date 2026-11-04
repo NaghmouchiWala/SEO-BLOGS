@@ -223,8 +223,14 @@ function AuthorityTable() {
           {rows.map((r) => (
             <tr key={r.domain}>
               <td className="font-[family-name:var(--font-mono)] text-[13px]">{r.domain}</td>
-              <td className="num font-semibold">{r.pageRank != null ? r.pageRank.toFixed(2) : "—"}</td>
-              <td className="num">{n(r.rank)}</td>
+              {r.status === 404 ? (
+                <td colSpan={2} className="num text-xs text-muted">Not in the Open PageRank index yet (too little link authority)</td>
+              ) : (
+                <>
+                  <td className="num font-semibold">{r.pageRank != null ? r.pageRank.toFixed(2) : "—"}</td>
+                  <td className="num">{n(r.rank)}</td>
+                </>
+              )}
             </tr>
           ))}
         </tbody>
