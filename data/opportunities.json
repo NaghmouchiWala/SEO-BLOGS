@@ -1,0 +1,51 @@
+{
+  "researchedAt": "2026-11-05",
+  "disclaimer": "These are leads found by web research, not vetted placements. Many Tunisian directories are old or inactive, so check that each site is still active, who it is for and whether links are followed before submitting. Nothing here is a purchase: do not pay for link packages.",
+  "groups": [
+    {
+      "title": "Business profiles and citations",
+      "intro": "Free, brand-owned profiles. They rarely add much DR on their own, but they confirm your identity to Google and AI answers and are the base of any link profile.",
+      "items": [
+        { "name": "Google Business Profile", "url": "https://business.google.com", "status": "standard", "note": "Free. Use the brand name, website and a French description. Best for any site with a real business behind it." },
+        { "name": "Bing Places for Business", "url": "https://www.bingplaces.com", "status": "standard", "note": "Free, and can import from Google Business Profile." },
+        { "name": "LinkedIn company pages", "url": "https://www.linkedin.com/company/setup/new/", "status": "standard", "note": "One page per brand, linking to the site. Post new articles there." },
+        { "name": "Facebook, X and YouTube brand pages", "url": "https://www.facebook.com/pages/create", "status": "standard", "note": "Link back to each site. Social links are usually nofollow, but they make the brand findable." },
+        { "name": "Crunchbase (company profile)", "url": "https://www.crunchbase.com", "status": "standard", "note": "Worth it for galylio.com and go2code.tn as companies; skip for blogs." }
+      ]
+    },
+    {
+      "title": "Tunisian directories (leads to verify)",
+      "intro": "The research found only a few Tunisian directories and most coverage is old. Verify each one before spending time.",
+      "items": [
+        { "name": "Pages Jaunes Tunisie", "url": "https://www.pagesjaunes.com.tn", "status": "verify", "note": "Well-known Tunisian business directory. Check the listing terms and whether the website link is followed.", "source": "https://ahrefs.com/websites/pagesjaunes.com.tn/competitors" },
+        { "name": "Tunisie Business Directory", "url": "https://www.tunisie-business.net", "status": "verify", "note": "Named as an important regional directory in a local SEO guide for Tunisia. Terms and cost not confirmed.", "source": "https://www.ranktracker.com/blog/a-complete-guide-for-doing-local-seo-in-tunisia/" },
+        { "name": "Pages Maghreb Tunisie", "url": "https://www.kapitalis.com/archive/186-kapital/16231-pages-maghreb-l-annuaire-electronique-des-entreprises-en-tunisie", "status": "old", "note": "Launched around 2011 with free registration. May be inactive: check before anything else.", "source": "https://www.kapitalis.com/archive/186-kapital/16231-pages-maghreb-l-annuaire-electronique-des-entreprises-en-tunisie" },
+        { "name": "Destinali (pan-African directory)", "url": "https://destinali.com", "status": "verify", "note": "Says it has a free listing tier. The comparison article that recommends it is promotional, so judge it yourself.", "source": "https://destinali.com/business-directories/african-business-directories-compared" }
+      ]
+    },
+    {
+      "title": "Media and contributions",
+      "intro": "A link inside a real article on a real publication is worth far more than directory links. Pitch a short idea first, not a finished article.",
+      "items": [
+        { "name": "Capmad", "url": "https://www.capmad.com", "status": "verify", "note": "Says it accepts guest articles and gives an editorial contact address. The clearest Tunisian-focused lead found.", "source": "https://www.capmad.com/?p=89186" },
+        { "name": "L'Économiste Maghrébin — Tribunes", "url": "https://www.leconomistemaghrebin.com", "status": "verify", "note": "Publishes opinion pieces from outside authors. Suitable for business and tech-policy angles." },
+        { "name": "Managers.tn", "url": "https://managers.tn", "status": "verify", "note": "Publishes innovation and startup content. No public contribution policy found: send a short pitch through its contact page." },
+        { "name": "WeAreTech Africa", "url": "https://www.wearetech.africa", "status": "verify", "note": "Publishes profiles of Tunisian startups and founders. A good fit if one of your projects has a founder story or product launch.", "source": "https://www.wearetech.africa/en/fils-uk/tech-stars/tunisias-ghassen-menaouar-speeds-up-database-management" }
+      ]
+    },
+    {
+      "title": "Pitch angles that earn links",
+      "intro": "Ideas drawn from what the network already does. Each gives a journalist or blogger a reason to link.",
+      "items": [
+        { "name": "Original data from your own projects", "status": "idea", "note": "1111.tn price comparisons can become a short study (for example how prices of a product category moved over a year). Data is the easiest thing to get linked." },
+        { "name": "Tunisian angle on global tech news", "status": "idea", "note": "The satellite articles already do this daily. Pick the best three per month and pitch them to the media above as short commentary pieces." },
+        { "name": "Guides for Tunisian businesses", "status": "idea", "note": "Practical guides (selling online, AI tools for small businesses, SEO basics in French) tend to be linked by training centres and business groups." }
+      ]
+    }
+  ],
+  "avoid": [
+    "Paid link packages, 'DR 50 backlinks for $20' offers and private blog networks: they are link spam and can lead to penalties.",
+    "Mass submission of the same site to hundreds of directories: low value and a spam signal.",
+    "Linking every site of the network to every other one: keep cross-links editorial and relevant."
+  ]
+}

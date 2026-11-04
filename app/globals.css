@@ -171,3 +171,9 @@ a.card:hover,
   .skeleton, .ring-arc { animation: none; }
   * { transition-duration: 0ms !important; }
 }
+
+/* Chart series (validated with the dataviz skill: dark-mode lightness band, CVD-safe pair). */
+:root {
+  --series-1: #7f9a16; /* DR  - olive lime  */
+  --series-2: #3987e5; /* UR  - blue        */
+}

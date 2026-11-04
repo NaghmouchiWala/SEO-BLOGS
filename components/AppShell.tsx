@@ -3,14 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Globe2, ScanSearch, TrendingUp, Bot, LogOut } from "lucide-react";
+import { LayoutDashboard, Globe2, ScanSearch, TrendingUp, Bot, LogOut, Gauge, Network, Lightbulb, Link2 } from "lucide-react";
 
 const NAV = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/sites", label: "Sites & articles", icon: Globe2 },
   { href: "/seo", label: "SEO audit", icon: ScanSearch },
-  { href: "/rankings", label: "Rankings", icon: TrendingUp },
   { href: "/geo", label: "GEO / AI visibility", icon: Bot },
+  { href: "/rankings", label: "Rankings", icon: TrendingUp },
+  { href: "/authority", label: "Authority (DR/UR)", icon: Gauge },
+  { href: "/links", label: "Internal links", icon: Network },
+  { href: "/keywords", label: "Keyword ideas", icon: Lightbulb },
+  { href: "/opportunities", label: "Link opportunities", icon: Link2 },
 ];
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
