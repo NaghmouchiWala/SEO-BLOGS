@@ -5,6 +5,9 @@ import ArticleCard from "@/components/ArticleCard";
 import { getAllArticles } from "@/lib/articles";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
 import { notFound } from "next/navigation";
+import { seoDescription } from "@/lib/seo";
+
+const SITE_URL = "https://points.tn";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -18,9 +21,26 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
+  const title =
+    locale === "fr"
+      ? `${dict.siteName} — IA, tech et business depuis la Tunisie`
+      : `${dict.siteName} — AI, Tech & Business from Tunisia`;
+  const description = seoDescription(dict.tagline);
   return {
-    title: `${dict.siteName} — ${dict.tagline}`,
-    description: dict.tagline,
+    title: { absolute: title },
+    description,
+    alternates: {
+      canonical: `${SITE_URL}/${locale}`,
+      languages: { fr: `${SITE_URL}/fr`, en: `${SITE_URL}/en` },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/${locale}`,
+      type: "website",
+      siteName: dict.siteName,
+      locale: locale === "fr" ? "fr_FR" : "en_US",
+    },
   };
 }
 

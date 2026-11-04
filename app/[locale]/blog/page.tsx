@@ -4,6 +4,7 @@ import Container from "@/components/Container";
 import BlogFilterGrid from "@/components/BlogFilterGrid";
 import { getAllArticles } from "@/lib/articles";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 const SITE_URL = "https://points.tn";
 
@@ -19,12 +20,22 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
+  const title = seoTitle(dict.blog.title);
+  const description = seoDescription(dict.blog.subtitle);
   return {
-    title: `${dict.blog.title} — Points.tn`,
-    description: dict.blog.subtitle,
+    title: { absolute: title },
+    description,
     alternates: {
       canonical: `${SITE_URL}/${locale}/blog`,
       languages: { fr: `${SITE_URL}/fr/blog`, en: `${SITE_URL}/en/blog` },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/${locale}/blog`,
+      type: "website",
+      siteName: "Points.tn",
+      locale: locale === "fr" ? "fr_FR" : "en_US",
     },
   };
 }

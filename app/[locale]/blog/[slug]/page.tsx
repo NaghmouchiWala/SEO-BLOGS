@@ -11,6 +11,7 @@ import ShareBar from "@/components/ShareBar";
 import { getAllArticles, getAllSlugs, getArticle } from "@/lib/articles";
 import { coverForArticle } from "@/lib/covers";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
+import { seoDescription, seoTitle } from "@/lib/seo";
 
 const SITE_URL = "https://points.tn";
 
@@ -31,8 +32,8 @@ export async function generateMetadata({
   if (!article) return {};
   const cover = coverForArticle(article.slug, article.category);
   return {
-    title: `${article.title} — Points.tn`,
-    description: article.description,
+    title: { absolute: seoTitle(article.title) },
+    description: seoDescription(article.description),
     keywords: article.tags,
     alternates: {
       canonical: `${SITE_URL}/${locale}/blog/${slug}`,
