@@ -387,7 +387,7 @@ first paragraph, no duplicate H1 title):
   return { title: parsed.title, frontmatter };
 }
 
-const MIN_DAYS_BETWEEN_ARTICLES = 2;
+const MIN_DAYS_BETWEEN_ARTICLES = 1;
 
 function mostRecentArticleDate() {
   let latest = null;
@@ -405,7 +405,7 @@ function mostRecentArticleDate() {
 
 async function main() {
   // Cron runs this daily (see generate-points-tn-article.sh); this check is
-  // what actually enforces the 2-day cadence, since cron's day-of-month
+  // what actually enforces the daily cadence, since cron's day-of-month
   // field can't express "every N days" reliably across month boundaries.
   const latest = mostRecentArticleDate();
   if (latest) {
