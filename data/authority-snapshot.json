@@ -1,0 +1,37 @@
+{
+  "source": "da-checker.org/dr-checker (Ahrefs-based DR / UR estimates)",
+  "checkedAt": "2026-11-04",
+  "note": "The free tool allows only 2 domains per check and a limited number of checks per hour, so five domains are still pending. N/A means the tool has no value for that domain (usually: no measurable backlinks yet). Re-check monthly: DR moves slowly.",
+  "rows": [
+    { "domain": "points.tn", "dr": 3, "ur": null, "status": "ok" },
+    { "domain": "soukbladi.tn", "dr": null, "ur": 4, "status": "ok" },
+    { "domain": "generaldesign.tn", "dr": 6, "ur": null, "status": "ok" },
+    { "domain": "lequotidien.tn", "dr": 6, "ur": 5, "status": "ok" },
+    { "domain": "snitnord.tn", "dr": 5, "ur": 5, "status": "ok" },
+    { "domain": "webline.tn", "dr": null, "ur": 4, "status": "ok" },
+    { "domain": "chedmed.tn", "dr": 7, "ur": 4, "status": "ok" },
+    { "domain": "openmosques.tn", "dr": null, "ur": null, "status": "pending" },
+    { "domain": "pcs.tn", "dr": null, "ur": null, "status": "pending" },
+    { "domain": "smartimpact.tn", "dr": null, "ur": null, "status": "pending" },
+    { "domain": "yatout.tn", "dr": null, "ur": null, "status": "pending" },
+    { "domain": "galylio.com", "dr": null, "ur": null, "status": "pending" }
+  ],
+  "plan": {
+    "done": [
+      "points.tn: www.points.tn now 301-redirects to points.tn (before, two hostnames shared the same links and split their strength).",
+      "Satellites: pages that don't exist now return a real 404 (before: the homepage with a 200), and dead year folders were removed from the sitemaps.",
+      "All sites: unique titles and meta descriptions, canonical tags, Open Graph tags, Article/BlogPosting and Organization schema, llms.txt.",
+      "Satellites: every new article now links to the site's 3 latest articles (internal linking passes strength between pages and lifts UR).",
+      "All 11 sites verified in Google Search Console and Bing Webmaster Tools, so indexing and incoming links can be monitored."
+    ],
+    "todo": [
+      "Earn real backlinks: DR and UR are built almost entirely from other sites linking to you. Start with Tunisian business directories, local press mentions, partner and client websites, and guest articles on relevant blogs.",
+      "Publish a few link-worthy pages per site (original data, guides, comparisons) and share them, so people have a reason to link.",
+      "Claim brand profiles (LinkedIn, Facebook, X, YouTube, Google Business Profile, Crunchbase) and link them to the sites; the Organization schema already lists related sites.",
+      "Submit each sitemap in Google Search Console and Bing Webmaster Tools, and fix pages marked 'not indexed' in the Pages report.",
+      "Use the Links report in Search Console to see who already links to each site, and reclaim links that point to old or broken URLs.",
+      "Be careful with cross-linking the whole network: mass links between all 11 sites, or paid link networks, can be treated as link spam by Google and hurt rankings. Keep links editorial and relevant.",
+      "Re-run the DR/UR check monthly. Expect slow movement: DR rises only as new referring domains are discovered."
+    ]
+  }
+}

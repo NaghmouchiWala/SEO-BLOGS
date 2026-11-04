@@ -186,7 +186,97 @@ function Setup({ tab }: { tab: Tab }) {
   return <EmptyState icon={<KeyRound size={40} strokeWidth={1.5} />} title={SETUP[tab].title} text={SETUP[tab].steps} />;
 }
 
+type Snapshot = {
+  source: string;
+  checkedAt: string;
+  note: string;
+  rows: { domain: string; dr: number | null; ur: number | null; status: "ok" | "pending" }[];
+  plan: { done: string[]; todo: string[] };
+};
+
 function AuthorityTable() {
+  const [snap, setSnap] = useState<Snapshot | null>(null);
+  const [err, setErr] = useState("");
+
+  const load = useCallback(async () => {
+    setErr("");
+    try {
+      const res = await fetch("/api/seo/authority-snapshot");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? `HTTP ${res.status}`);
+      setSnap(data);
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : String(e));
+    }
+  }, []);
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  const cell = (v: number | null, pending: boolean) =>
+    pending ? <span className="text-subtle">pending</span> : v == null ? <span className="text-muted" title="No value from the tool: no measurable backlinks yet">N/A</span> : <span className="font-semibold">{v}</span>;
+
+  return (
+    <div className="space-y-8">
+      <section>
+        <h2 className="mb-1 text-sm font-semibold">DR and UR (Ahrefs-based)</h2>
+        <p className="mb-3 text-xs text-muted">
+          {snap ? `Checked ${snap.checkedAt} on ${snap.source}. ${snap.note}` : "Loading..."}
+        </p>
+        {err && <ErrorState title="Could not load the DR/UR snapshot" detail={err} onRetry={load} />}
+        {!snap && !err && <div className="skeleton h-64" />}
+        {snap && (
+          <div className="card !p-0 overflow-x-auto">
+            <table className="tbl">
+              <thead>
+                <tr><th>Domain</th><th className="num">DR</th><th className="num">UR (homepage)</th><th className="num">Organic traffic</th></tr>
+              </thead>
+              <tbody>
+                {snap.rows.map((r) => (
+                  <tr key={r.domain}>
+                    <td className="font-[family-name:var(--font-mono)] text-[13px]">{r.domain}</td>
+                    <td className="num">{cell(r.dr, r.status === "pending")}</td>
+                    <td className="num">{cell(r.ur, r.status === "pending")}</td>
+                    <td className="num"><span className="text-muted">{r.status === "pending" ? "pending" : "N/A"}</span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {snap && (
+        <section className="grid gap-4 lg:grid-cols-2">
+          <div className="card">
+            <h2 className="mb-3 text-sm font-semibold text-success">Already improved</h2>
+            <ul className="space-y-2 text-sm">
+              {snap.plan.done.map((t) => (
+                <li key={t} className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-success" />{t}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="card">
+            <h2 className="mb-1 text-sm font-semibold text-accent">To raise DR and UR further</h2>
+            <p className="mb-3 text-xs text-muted">DR and UR are driven by links from other websites, so the biggest steps happen off-site.</p>
+            <ul className="space-y-2 text-sm">
+              {snap.plan.todo.map((t) => (
+                <li key={t} className="flex gap-2"><span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />{t}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      <section>
+        <h2 className="mb-3 text-sm font-semibold">Open PageRank authority (0–10)</h2>
+        <OprAuthorityTable />
+      </section>
+    </div>
+  );
+}
+
+function OprAuthorityTable() {
   const [state, setState] = useState<"loading" | "unconfigured" | "error" | "ready">("loading");
   const [rows, setRows] = useState<AuthorityRow[]>([]);
   const [err, setErr] = useState("");
