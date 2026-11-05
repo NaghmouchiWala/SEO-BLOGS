@@ -189,3 +189,22 @@ html, body { overflow-x: hidden; }
   .btn-primary, .btn-ghost { height: 44px; }
   .input { height: 44px; font-size: 16px; } /* 16px stops iOS zooming into inputs */
 }
+
+/* ---- App shell: phone = top bar + drawer, tablet = icon rail, desktop = full sidebar ----
+   Plain media queries (not stacked Tailwind variants) so the 248px sidebar always wins at >=1100px. */
+.app-grid { min-height: 100vh; }
+@media (min-width: 768px) {
+  .app-grid { display: grid; grid-template-columns: 64px minmax(0, 1fr); }
+}
+@media (min-width: 1100px) {
+  .app-grid { grid-template-columns: 248px minmax(0, 1fr); }
+}
+@media (min-width: 768px) and (max-width: 1099px) {
+  .rail-hide { display: none !important; }
+  .rail-show { display: block !important; }
+  .rail-center { justify-content: center !important; padding-left: 0 !important; padding-right: 0 !important; }
+  .rail-pad0 { padding-left: 0 !important; padding-right: 0 !important; }
+}
+@media (min-width: 768px) {
+  .mobile-only { display: none !important; } /* beats .btn-ghost, which would otherwise show the drawer's close button on desktop */
+}

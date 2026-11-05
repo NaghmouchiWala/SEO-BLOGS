@@ -47,7 +47,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <div className="min-h-screen md:grid md:grid-cols-[64px_1fr] min-[1100px]:grid-cols-[248px_1fr]">
+    <div className="app-grid">
       {/* Phone: top bar with a menu button */}
       <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-sidebar/95 px-4 backdrop-blur md:hidden">
         <Link href="/" className="flex items-center gap-2" aria-label="Galylio Blogs home">
@@ -63,27 +63,27 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <aside
         className={`fixed inset-y-0 left-0 z-50 flex w-[272px] max-w-[85vw] flex-col border-r border-border bg-sidebar transition-transform duration-200 md:sticky md:top-0 md:z-auto md:h-screen md:w-auto md:max-w-none md:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <button onClick={() => setOpen(false)} aria-label="Close menu" className="btn-ghost absolute right-3 top-3 !h-9 !w-9 !px-0 md:hidden">
+        <button onClick={() => setOpen(false)} aria-label="Close menu" className="btn-ghost mobile-only absolute right-3 top-3 !h-9 !w-9 !px-0">
           <X size={18} strokeWidth={1.5} />
         </button>
-        <Link href="/" className="flex items-center gap-2 px-5 pt-5 pb-6 md:max-[1099px]:justify-center md:max-[1099px]:px-0">
+        <Link href="/" className="flex items-center gap-2 px-5 pt-5 pb-6 rail-center">
           <Image
             src="/logo_transparent.webp"
             alt="Galylio"
             width={739}
             height={276}
             priority
-            className="h-10 w-auto md:max-[1099px]:hidden"
+            className="h-10 w-auto rail-hide"
           />
           <Image
             src="/galylio-mark.svg"
             alt="Galylio"
             width={28}
             height={28}
-            className="hidden h-7 w-7 md:max-[1099px]:block"
+            className="hidden h-7 w-7 rail-show"
           />
         </Link>
-        <div className="px-5 pb-3 font-[family-name:var(--font-display)] text-sm font-semibold tracking-wide text-accent md:max-[1099px]:hidden">
+        <div className="px-5 pb-3 font-[family-name:var(--font-display)] text-sm font-semibold tracking-wide text-accent rail-hide">
           Blogs
         </div>
 
@@ -94,10 +94,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
               href={href}
               aria-current={isActive(href) ? "page" : undefined}
               title={label}
-              className="flex h-10 items-center gap-3 rounded-lg px-3 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-foreground aria-[current=page]:bg-accent/10 aria-[current=page]:text-foreground aria-[current=page]:shadow-[inset_2px_0_0_var(--color-accent)] md:max-[1099px]:justify-center"
+              className="flex h-10 items-center gap-3 rounded-lg px-3 text-sm text-muted transition-colors hover:bg-surface-2 hover:text-foreground aria-[current=page]:bg-accent/10 aria-[current=page]:text-foreground aria-[current=page]:shadow-[inset_2px_0_0_var(--color-accent)] rail-center"
             >
               <Icon size={18} strokeWidth={1.5} className={isActive(href) ? "text-accent" : ""} />
-              <span className="md:max-[1099px]:hidden">{label}</span>
+              <span className="rail-hide">{label}</span>
             </Link>
           ))}
         </nav>
@@ -106,10 +106,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           <button
             onClick={handleLogout}
             title="Sign out"
-            className="btn-ghost w-full !h-9 !px-3 text-muted md:max-[1099px]:!px-0"
+            className="btn-ghost w-full !h-9 !px-3 text-muted rail-pad0"
           >
             <LogOut size={16} strokeWidth={1.5} />
-            <span className="md:max-[1099px]:hidden">Sign out</span>
+            <span className="rail-hide">Sign out</span>
           </button>
         </div>
       </aside>
