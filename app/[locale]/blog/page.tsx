@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Container from "@/components/Container";
-import BlogFilterGrid from "@/components/BlogFilterGrid";
+import Sidebar from "@/components/Sidebar";
+import ArticleSearchList from "@/components/ArticleSearchList";
 import { getAllArticles } from "@/lib/articles";
 import { isLocale, locales, getDictionary, type Locale } from "@/lib/i18n";
 import { seoDescription, seoTitle } from "@/lib/seo";
@@ -12,11 +14,7 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
@@ -40,18 +38,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogIndexPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function BlogIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const loc = locale as Locale;
   const dict = getDictionary(loc);
   const articles = getAllArticles(loc);
-
-  const allTags = Array.from(new Set(articles.flatMap((a) => a.tags))).slice(0, 14);
 
   const collectionJsonLd = {
     "@context": "https://schema.org",
@@ -69,20 +61,15 @@ export default async function BlogIndexPage({
   };
 
   return (
-    <Container className="py-16 sm:py-20">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
-      />
-
-      <div className="mb-10 max-w-2xl">
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-          {dict.blog.title}
-        </h1>
-        <p className="mt-3 text-lg text-muted">{dict.blog.subtitle}</p>
+    <Container className="py-6 sm:py-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      <h1 className="section-title mb-6 !text-xl">{dict.blog.title}</h1>
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <Suspense fallback={null}>
+          <ArticleSearchList articles={articles} locale={loc} />
+        </Suspense>
+        <Sidebar articles={articles} locale={loc} />
       </div>
-
-      <BlogFilterGrid articles={articles} tags={allTags} locale={loc} />
     </Container>
   );
 }

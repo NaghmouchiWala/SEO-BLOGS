@@ -34,12 +34,25 @@ type Dictionary = {
     sitesTitle: string;
     legal: string;
   };
+  news: {
+    menu: string;
+    close: string;
+    search: string;
+    searchPlaceholder: string;
+    noResults: string;
+    readMore: string;
+    recent: string;
+    topStories: string;
+    allArticles: string;
+    sections: string;
+    inCategory: string;
+  };
 };
 
 export const dictionaries: Record<Locale, Dictionary> = {
   fr: {
     siteName: "Points.tn",
-    tagline: "Idées, outils et intelligence artificielle pour les entreprises tunisiennes qui visent le monde.",
+    tagline: "L'actualité de la Tunisie et du monde : national, international, sport, culture, régions et tech.",
     nav: { home: "Accueil", blog: "Articles", about: "À propos" },
     home: {
       heroTitle: "L'intelligence artificielle expliquée pour de vrais résultats business.",
@@ -63,14 +76,27 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     footer: {
       description:
-        "Points.tn est un média indépendant qui explore l'intelligence artificielle, le digital et l'innovation technologique, en Tunisie et à l'international.",
+        "Points.tn est un média en ligne qui suit l'actualité de la Tunisie et du monde : national, international, sport, culture, régions et technologie. Chaque article cite sa source.",
       sitesTitle: "Nos recommandations",
       legal: "Tous droits réservés.",
+    },
+  news: {
+      menu: "Menu",
+      close: "Fermer",
+      search: "Rechercher",
+      searchPlaceholder: "Rechercher un article…",
+      noResults: "Aucun article ne correspond à votre recherche.",
+      readMore: "Lire la suite",
+      recent: "Les plus récents",
+      topStories: "À la une",
+      allArticles: "Tous les articles",
+      sections: "Rubriques",
+      inCategory: "Dans la rubrique",
     },
   },
   en: {
     siteName: "Points.tn",
-    tagline: "Ideas, tools and artificial intelligence for businesses that think beyond borders.",
+    tagline: "News from Tunisia and the world: national, international, sport, culture, regions and tech.",
     nav: { home: "Home", blog: "Articles", about: "About" },
     home: {
       heroTitle: "Artificial intelligence explained for real business outcomes.",
@@ -94,9 +120,22 @@ export const dictionaries: Record<Locale, Dictionary> = {
     },
     footer: {
       description:
-        "Points.tn is an independent media outlet exploring artificial intelligence, digital transformation and technology innovation, from Tunisia to the world.",
+        "Points.tn is an online news outlet covering Tunisia and the world: national, international, sport, culture, regions and technology. Every article cites its source.",
       sitesTitle: "Recommended",
       legal: "All rights reserved.",
+    },
+  news: {
+      menu: "Menu",
+      close: "Close",
+      search: "Search",
+      searchPlaceholder: "Search articles…",
+      noResults: "No article matches your search.",
+      readMore: "Read more",
+      recent: "Most recent",
+      topStories: "Top stories",
+      allArticles: "All articles",
+      sections: "Sections",
+      inCategory: "In section",
     },
   },
 };

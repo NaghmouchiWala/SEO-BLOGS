@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { imageForCategory } from "./categories";
 
 const coverBySlug: Record<string, string> = {
@@ -42,6 +44,11 @@ const coverBySlug: Record<string, string> = {
   "geo-generative-engine-optimization-explained": "/images/photos/geo-ai-search.jpg",
 };
 
+// Server-only (reads the filesystem at build time). A photo saved by the
+// generator as public/images/photos/<slug>.jpg is used automatically.
 export function coverForArticle(slug: string, category: string): string {
-  return coverBySlug[slug] ?? imageForCategory(category);
+  if (coverBySlug[slug]) return coverBySlug[slug];
+  const photo = `/images/photos/${slug}.jpg`;
+  if (fs.existsSync(path.join(process.cwd(), "public", photo))) return photo;
+  return imageForCategory(category);
 }

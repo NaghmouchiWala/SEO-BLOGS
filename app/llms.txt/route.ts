@@ -9,7 +9,7 @@ export function GET() {
   const lines: string[] = [
     "# Points.tn",
     "",
-    "> Points.tn is a Tunisian blog on artificial intelligence, tech, appliances, SEO automation and digital business. Articles are published in French and English and are based on real, sourced news with a local angle.",
+    "> Points.tn is a Tunisian online news outlet covering national news, international news, sport, culture, regions and tech. Articles are published in French and English; each one is based on a real story and cites its source.",
     "",
     "## About",
     "",

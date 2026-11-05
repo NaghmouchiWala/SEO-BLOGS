@@ -1,65 +1,108 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Clock } from "lucide-react";
 import type { ArticleMeta } from "@/lib/articles";
-import { coverForArticle } from "@/lib/covers";
+import { categoryLabel } from "@/lib/categories";
 import { getDictionary, type Locale } from "@/lib/i18n";
 
-export default function ArticleCard({
-  article,
-  locale,
-  featured = false,
-}: {
-  article: ArticleMeta;
-  locale: Locale;
-  featured?: boolean;
-}) {
-  const dict = getDictionary(locale);
-  const date = new Date(article.date).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
+export function formatDate(iso: string, locale: Locale) {
+  return new Date(iso).toLocaleDateString(locale === "fr" ? "fr-FR" : "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
-  const cover = coverForArticle(article.slug, article.category);
+}
 
+export function DateLine({ iso, locale }: { iso: string; locale: Locale }) {
+  return (
+    <span className="date-line">
+      <Clock size={11} aria-hidden />
+      <time dateTime={iso}>{formatDate(iso, locale)}</time>
+    </span>
+  );
+}
+
+const href = (locale: Locale, a: ArticleMeta) => `/${locale}/blog/${a.slug}`;
+
+/** Photo with the headline on top (home hero). */
+export function OverlayCard({
+  article,
+  locale,
+  size = "small",
+  priority = false,
+}: {
+  article: ArticleMeta;
+  locale: Locale;
+  size?: "large" | "small";
+  priority?: boolean;
+}) {
+  const large = size === "large";
   return (
     <Link
-      href={`/${locale}/blog/${article.slug}`}
-      className={`card-glow group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-all hover:-translate-y-1 hover:border-border-strong ${
-        featured ? "sm:col-span-2" : ""
-      }`}
+      href={href(locale, article)}
+      className="overlay-card group relative block h-full min-h-[220px] overflow-hidden bg-neutral-800"
     >
-      <div
-        className={`relative overflow-hidden ${featured ? "aspect-[21/9]" : "aspect-[16/9]"}`}
-      >
-        <Image
-          src={cover}
-          alt={article.coverAlt}
-          fill
-          sizes={featured ? "100vw" : "(max-width: 640px) 100vw, 50vw"}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent" />
-        <span className="absolute left-4 top-4 inline-flex w-fit items-center rounded-full border border-accent/30 bg-background/70 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-2 backdrop-blur-sm">
-          {article.category}
-        </span>
-      </div>
-
-      <div className="flex flex-1 flex-col p-6">
-        <h3
-          className={`mb-2 font-[family-name:var(--font-display)] font-bold text-foreground transition-colors group-hover:text-accent-2 ${
-            featured ? "text-2xl sm:text-3xl" : "text-xl"
-          }`}
-        >
+      <Image
+        src={article.cover}
+        alt={article.coverAlt}
+        fill
+        priority={priority}
+        sizes={large ? "(max-width: 1024px) 100vw, 66vw" : "(max-width: 1024px) 100vw, 33vw"}
+        className="object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="absolute inset-x-0 bottom-0 z-10 p-4 sm:p-6">
+        <span className="cat-badge mb-2">{categoryLabel(article.categorySlug, locale)}</span>
+        <h3 className={`font-medium leading-snug text-white ${large ? "text-xl sm:text-3xl" : "text-base sm:text-lg"}`}>
           {article.title}
         </h3>
-        <p className="mb-5 flex-1 text-sm leading-relaxed text-muted">{article.description}</p>
-        <div className="flex items-center justify-between text-xs text-muted-2">
-          <span>{date}</span>
-          <span>
-            {article.readingMinutes} {dict.blog.minRead}
-          </span>
-        </div>
+        {large && <p className="mt-2 hidden max-w-2xl text-sm text-white/80 sm:block">{article.description}</p>}
       </div>
     </Link>
+  );
+}
+
+/** List row: thumbnail left, text right. */
+export function RowCard({ article, locale }: { article: ArticleMeta; locale: Locale }) {
+  const dict = getDictionary(locale);
+  return (
+    <article className="grid gap-4 sm:grid-cols-[minmax(0,220px)_1fr] sm:gap-5">
+      <Link href={href(locale, article)} className="relative block aspect-[16/10] overflow-hidden bg-surface sm:aspect-[7/5]" tabIndex={-1} aria-hidden>
+        <Image src={article.cover} alt="" fill sizes="(max-width: 640px) 100vw, 220px" className="object-cover" />
+      </Link>
+      <div className="min-w-0">
+        <h3 className="text-[17px] font-bold leading-snug text-foreground">
+          <Link href={href(locale, article)} className="hover:text-accent-dark">
+            {article.title}
+          </Link>
+        </h3>
+        <div className="mt-2">
+          <DateLine iso={article.date} locale={locale} />
+        </div>
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-muted">{article.description}</p>
+        <Link href={href(locale, article)} className="btn-outline mt-3">
+          {dict.news.readMore}
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+/** Plain card (image on top) for "related" blocks. */
+export default function ArticleCard({ article, locale }: { article: ArticleMeta; locale: Locale }) {
+  return (
+    <article>
+      <Link href={href(locale, article)} className="relative mb-3 block aspect-[16/10] overflow-hidden bg-surface">
+        <Image src={article.cover} alt={article.coverAlt} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover" />
+      </Link>
+      <span className="cat-badge mb-2">{categoryLabel(article.categorySlug, locale)}</span>
+      <h3 className="text-base font-bold leading-snug">
+        <Link href={href(locale, article)} className="hover:text-accent-dark">
+          {article.title}
+        </Link>
+      </h3>
+      <div className="mt-2">
+        <DateLine iso={article.date} locale={locale} />
+      </div>
+    </article>
   );
 }

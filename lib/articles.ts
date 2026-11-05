@@ -3,6 +3,8 @@ import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import type { Locale } from "./i18n";
+import { categorySlug, type CategorySlug } from "./categories";
+import { coverForArticle } from "./covers";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -17,6 +19,8 @@ export type ArticleMeta = {
   coverAlt: string;
   readingMinutes: number;
   tags: string[];
+  categorySlug: CategorySlug;
+  cover: string;
 };
 
 export type Article = ArticleMeta & {
@@ -53,6 +57,8 @@ export function getArticle(locale: Locale, slug: string): Article | null {
     coverAlt: data.coverAlt ?? data.title,
     readingMinutes: Math.max(1, Math.round(stats.minutes)),
     tags: Array.isArray(data.tags) ? data.tags : [],
+    categorySlug: categorySlug(data.category),
+    cover: coverForArticle(slug, data.category),
     content,
   };
 }

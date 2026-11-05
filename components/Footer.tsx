@@ -1,63 +1,58 @@
 import Link from "next/link";
 import Container from "./Container";
-import type { Locale } from "@/lib/i18n";
-import { getDictionary } from "@/lib/i18n";
+import { CATEGORIES } from "@/lib/categories";
+import { getDictionary, type Locale } from "@/lib/i18n";
 
 export default function Footer({ locale }: { locale: Locale }) {
   const dict = getDictionary(locale);
   const year = 2026;
 
   return (
-    <footer className="relative mt-24 overflow-hidden border-t border-border bg-surface/60">
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
-
-      <Container className="relative grid gap-10 py-14 sm:grid-cols-3">
+    <footer className="mt-16 bg-masthead text-white/80">
+      <Container className="grid gap-10 py-12 sm:grid-cols-3">
         <div>
-          <div className="mb-3 flex items-center gap-2 font-[family-name:var(--font-display)] text-lg font-bold text-foreground">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-accent-2 text-xs font-black text-background">
-              P
+          <div className="mb-3 flex items-start leading-none text-white">
+            <span className="text-[28px] font-light tracking-tight">points</span>
+            <span className="ml-[3px] mt-[2px] rounded-full bg-accent px-[5px] py-[2px] text-[9px] font-bold leading-none text-black">
+              tn
             </span>
-            {dict.siteName}
           </div>
-          <p className="max-w-xs text-sm leading-relaxed text-muted">{dict.footer.description}</p>
+          <p className="max-w-xs text-sm leading-relaxed text-white/60">{dict.footer.description}</p>
         </div>
 
         <div>
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-2">{dict.nav.blog}</h3>
-          <ul className="space-y-2.5 text-sm text-muted">
-            <li>
-              <Link href={`/${locale}/blog`} className="transition-colors hover:text-accent-2">
-                {dict.nav.blog}
-              </Link>
-            </li>
-            <li>
-              <Link href={`/${locale}`} className="transition-colors hover:text-accent-2">
-                {dict.nav.home}
-              </Link>
-            </li>
+          <h3 className="mb-3 text-xs font-medium uppercase tracking-widest text-white/50">{dict.news.sections}</h3>
+          <ul className="space-y-2 text-sm">
+            {CATEGORIES.map((c) => (
+              <li key={c.slug}>
+                <Link href={`/${locale}/category/${c.slug}`} className="hover:text-accent">
+                  {c[locale]}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-2">{dict.footer.sitesTitle}</h3>
-          <ul className="space-y-2.5 text-sm text-muted">
+          <h3 className="mb-3 text-xs font-medium uppercase tracking-widest text-white/50">{dict.footer.sitesTitle}</h3>
+          <ul className="space-y-2 text-sm">
             <li>
-              <a href="https://galylio.com" target="_blank" rel="noopener" className="transition-colors hover:text-accent-2">
+              <a href="https://galylio.com" target="_blank" rel="noopener" className="hover:text-accent">
                 Galylio — IA &amp; automatisation
               </a>
             </li>
             <li>
-              <a href="https://go2code.tn" target="_blank" rel="noopener" className="transition-colors hover:text-accent-2">
+              <a href="https://go2code.tn" target="_blank" rel="noopener" className="hover:text-accent">
                 Go2Code — Formations tech
               </a>
             </li>
             <li>
-              <a href="https://tdiscount.tn" target="_blank" rel="noopener" className="transition-colors hover:text-accent-2">
+              <a href="https://tdiscount.tn" target="_blank" rel="noopener" className="hover:text-accent">
                 Tdiscount.tn
               </a>
             </li>
             <li>
-              <a href="https://1111.tn" target="_blank" rel="noopener" className="transition-colors hover:text-accent-2">
+              <a href="https://1111.tn" target="_blank" rel="noopener" className="hover:text-accent">
                 1111.tn — Comparateur de prix
               </a>
             </li>
@@ -65,7 +60,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
       </Container>
 
-      <Container className="relative flex flex-col items-center justify-between gap-2 border-t border-border py-6 text-xs text-muted-2 sm:flex-row">
+      <Container className="flex flex-col items-center justify-between gap-2 border-t border-white/10 py-5 text-xs text-white/50 sm:flex-row">
         <p>
           © {year} {dict.siteName}. {dict.footer.legal}
         </p>

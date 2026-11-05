@@ -7,6 +7,8 @@ import Container from "@/components/Container";
 import ArticleCard from "@/components/ArticleCard";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import TagPill from "@/components/TagPill";
+import { DateLine } from "@/components/ArticleCard";
+import { categoryLabel } from "@/lib/categories";
 import ShareBar from "@/components/ShareBar";
 import { getAllArticles, getAllSlugs, getArticle, getTranslationSlug } from "@/lib/articles";
 import { coverForArticle } from "@/lib/covers";
@@ -93,21 +95,15 @@ export default async function ArticlePage({
   const dict = getDictionary(loc);
   const related = getAllArticles(loc)
     .filter((a) => a.slug !== slug)
-    .slice(0, 2);
+    .slice(0, 3);
   const cover = coverForArticle(article.slug, article.category);
   const pageUrl = `${SITE_URL}/${loc}/blog/${slug}`;
-
-  const date = new Date(article.date).toLocaleDateString(loc === "fr" ? "fr-FR" : "en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 
   const wordCount = article.content.split(/\s+/).filter(Boolean).length;
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "NewsArticle",
     "@id": `${pageUrl}#article`,
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     headline: article.title,
@@ -118,7 +114,7 @@ export default async function ArticlePage({
     inLanguage: loc === "fr" ? "fr-FR" : "en-US",
     wordCount,
     keywords: article.tags.join(", "),
-    articleSection: article.category,
+    articleSection: categoryLabel(article.categorySlug, loc),
     author: {
       "@type": "Organization",
       name: "Points.tn",
@@ -156,28 +152,26 @@ export default async function ArticlePage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <div className="border-b border-border bg-grid">
-        <Container className="py-10 sm:py-12">
+      <div className="border-b border-border">
+        <Container className="py-8 sm:py-10">
           <div className="mb-6 flex items-center justify-between">
             <Link
               href={`/${loc}/blog`}
-              className="text-sm font-medium text-muted transition-colors hover:text-foreground"
+              className="text-sm font-medium text-muted transition-colors hover:text-accent-dark"
             >
               ← {dict.article.backToBlog}
             </Link>
             <LocaleSwitcher locale={loc} altSlug={getTranslationSlug(loc, slug) ?? undefined} />
           </div>
-          <span className="mb-4 inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent-2">
-            {article.category}
-          </span>
-          <h1 className="font-[family-name:var(--font-display)] max-w-3xl text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+          <Link href={`/${loc}/category/${article.categorySlug}`} className="cat-badge mb-4">
+            {categoryLabel(article.categorySlug, loc)}
+          </Link>
+          <h1 className="max-w-3xl text-3xl font-bold leading-tight text-foreground sm:text-4xl">
             {article.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted">{article.description}</p>
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted">{article.description}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted">
-            <span>
-              {dict.article.publishedOn} <time dateTime={article.date}>{date}</time>
-            </span>
+            <DateLine iso={article.date} locale={loc} />
             <span aria-hidden>·</span>
             <span>
               {article.readingMinutes} {dict.blog.minRead}
@@ -195,7 +189,6 @@ export default async function ArticlePage({
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 
       <Container className="py-14 sm:py-16">
@@ -218,10 +211,10 @@ export default async function ArticlePage({
 
       {related.length > 0 && (
         <Container className="border-t border-border py-14 sm:py-16">
-          <h2 className="mb-8 font-[family-name:var(--font-display)] text-2xl font-bold text-foreground">
+          <h2 className="section-title mb-8">
             {dict.article.relatedTitle}
           </h2>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-3">
             {related.map((a) => (
               <ArticleCard key={a.slug} article={a} locale={loc} />
             ))}
