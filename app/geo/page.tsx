@@ -54,9 +54,9 @@ export default function GeoPage() {
         title="GEO / AI visibility"
         subtitle="How ready the site is to be read and cited by ChatGPT, Claude, Perplexity and Google AI answers"
         actions={
-          <div className="flex items-center gap-3">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
             <SiteSelect value={siteKey} onChange={(v) => { setSiteKey(v); setAudit(null); }} options={OPTIONS} />
-            <button onClick={run} disabled={loading} className="btn-primary">
+            <button onClick={run} disabled={loading} className="btn-primary w-full sm:w-auto">
               <Bot size={16} /> {loading ? "Checking..." : "Check site"}
             </button>
           </div>

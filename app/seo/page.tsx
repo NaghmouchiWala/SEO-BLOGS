@@ -40,9 +40,9 @@ export default function SeoAuditPage() {
         title="SEO audit"
         subtitle="Live crawl of the public site: titles, meta, headings, structured data, robots, sitemap and speed"
         actions={
-          <div className="flex items-center gap-3">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
             <SiteSelect value={siteKey} onChange={(v) => { setSiteKey(v); setAudit(null); }} options={OPTIONS} />
-            <button onClick={run} disabled={loading} className="btn-primary">
+            <button onClick={run} disabled={loading} className="btn-primary w-full sm:w-auto">
               <ScanSearch size={16} /> {loading ? "Auditing..." : "Run audit"}
             </button>
           </div>
@@ -130,7 +130,7 @@ export default function SeoAuditPage() {
               <tbody>
                 {audit.pages.map((p) => (
                   <tr key={p.url}>
-                    <td className="max-w-[360px] truncate font-[family-name:var(--font-mono)] text-xs">
+                    <td className="max-w-[360px] break-all font-[family-name:var(--font-mono)] text-xs">
                       <a href={p.url} target="_blank" rel="noreferrer" className="hover:text-accent">{p.url.replace(/^https?:\/\//, "")}</a>
                     </td>
                     <td className={`num ${p.status === 200 ? "" : "text-danger"}`}>{p.status || "—"}</td>

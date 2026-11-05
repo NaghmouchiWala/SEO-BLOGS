@@ -70,7 +70,7 @@ export default function AuthorityPage() {
         <div className="mb-8 space-y-4">
           <ChartCard
             title="DR and UR per site"
-            subtitle="Both on one 0–10 axis. UR is the homepage's URL Rating."
+            subtitle="Both on one shared axis. UR is the homepage's URL Rating."
             legend={<ChartLegend items={[{ label: "DR — Domain Rating", color: "var(--series-1)" }, { label: "UR — homepage URL Rating", color: "var(--series-2)" }]} />}
             chart={<DrUrBars rows={sorted} />}
             table={<DrUrTable rows={sorted} />}

@@ -334,14 +334,14 @@ export default function RankingsPage() {
   return (
     <Page>
       <PageHeader title="Rankings" subtitle="Real search performance from Google and Bing, plus domain authority, for every site" />
-      <div role="tablist" className="mb-5 inline-flex gap-1 rounded-lg border border-border bg-surface p-1">
+      <div role="tablist" className="mb-5 flex max-w-full gap-1 overflow-x-auto rounded-lg border border-border bg-surface p-1 sm:inline-flex">
         {TABS.map((t) => (
           <button
             key={t.id}
             role="tab"
             aria-selected={tab === t.id}
             onClick={() => setTab(t.id)}
-            className="rounded-md px-3 py-1.5 text-sm text-muted transition-colors hover:text-foreground aria-selected:bg-accent aria-selected:font-semibold aria-selected:text-ink"
+            className="shrink-0 whitespace-nowrap rounded-md px-3 py-2 text-sm text-muted transition-colors hover:text-foreground aria-selected:bg-accent aria-selected:font-semibold aria-selected:text-ink"
           >
             {t.label}
           </button>

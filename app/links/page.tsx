@@ -23,7 +23,7 @@ function PageTable({ rows, empty, cols }: { rows: PageLinks[]; empty: string; co
         <tbody>
           {rows.map((r) => (
             <tr key={r.url}>
-              <td className="max-w-[560px] truncate font-[family-name:var(--font-mono)] text-xs">
+              <td className="max-w-[560px] break-all font-[family-name:var(--font-mono)] text-xs">
                 <a href={r.url} target="_blank" rel="noreferrer" className="hover:text-accent">{r.path}</a>
               </td>
               {cols.includes("inbound") && <td className="num">{r.inbound}</td>}
@@ -75,9 +75,9 @@ export default function LinksPage() {
         title="Internal links"
         subtitle="Which pages nobody links to, which are weakly linked, and which links are broken. Strong internal links raise the UR of your own pages."
         actions={
-          <div className="flex items-center gap-3">
+          <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto">
             <SiteSelect value={siteKey} onChange={(v) => { setSiteKey(v); setReport(null); }} options={OPTIONS} />
-            <button onClick={() => run()} disabled={loading} className="btn-primary">
+            <button onClick={() => run()} disabled={loading} className="btn-primary w-full sm:w-auto">
               <Network size={16} /> {loading ? "Crawling..." : "Analyze"}
             </button>
           </div>
@@ -127,9 +127,9 @@ export default function LinksPage() {
                   <tbody>
                     {report.broken.map((b) => (
                       <tr key={b.target}>
-                        <td className="max-w-[360px] truncate font-[family-name:var(--font-mono)] text-xs">{b.target.replace(/^https?:\/\//, "")}</td>
+                        <td className="max-w-[360px] break-all font-[family-name:var(--font-mono)] text-xs">{b.target.replace(/^https?:\/\//, "")}</td>
                         <td className="num text-danger">{b.status || "no response"}</td>
-                        <td className="max-w-[360px] truncate font-[family-name:var(--font-mono)] text-xs text-muted">{b.from.map((f) => f.replace(/^https?:\/\/[^/]+/, "")).join(", ")}</td>
+                        <td className="max-w-[360px] break-all font-[family-name:var(--font-mono)] text-xs text-muted">{b.from.map((f) => f.replace(/^https?:\/\/[^/]+/, "")).join(", ")}</td>
                       </tr>
                     ))}
                   </tbody>

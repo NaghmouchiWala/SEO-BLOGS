@@ -177,3 +177,15 @@ a.card:hover,
   --series-1: #7f9a16; /* DR  - olive lime  */
   --series-2: #3987e5; /* UR  - blue        */
 }
+
+/* ---- Mobile ---- */
+html, body { overflow-x: hidden; }
+.scroll-x { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 640px) {
+  .card { padding: 14px; }
+  .tbl { font-size: 12.5px; }
+  .tbl th { padding: 10px 12px; }
+  .tbl td { padding: 10px 12px; }
+  .btn-primary, .btn-ghost { height: 44px; }
+  .input { height: 44px; font-size: 16px; } /* 16px stops iOS zooming into inputs */
+}

@@ -2,9 +2,9 @@ import { AlertOctagon, AlertTriangle, CheckCircle2, Info } from "lucide-react";
 
 export function PageHeader({ title, subtitle, actions }: { title: string; subtitle?: string; actions?: React.ReactNode }) {
   return (
-    <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+    <div className="mb-5 flex flex-wrap items-end justify-between gap-3 sm:mb-6 sm:gap-4">
       <div>
-        <h1 className="font-[family-name:var(--font-display)] text-[28px] leading-[34px] font-semibold">{title}</h1>
+        <h1 className="font-[family-name:var(--font-display)] text-2xl leading-8 font-semibold sm:text-[28px] sm:leading-[34px]">{title}</h1>
         {subtitle && <p className="mt-1 text-sm text-muted">{subtitle}</p>}
       </div>
       {actions}
@@ -13,14 +13,14 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
 }
 
 export function Page({ children }: { children: React.ReactNode }) {
-  return <main className="mx-auto w-full max-w-[1280px] px-8 py-8">{children}</main>;
+  return <main className="mx-auto w-full max-w-[1280px] px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-8">{children}</main>;
 }
 
 export function StatCard({ label, value, hint }: { label: string; value: React.ReactNode; hint?: string }) {
   return (
     <div className="card">
       <div className="label">{label}</div>
-      <div className="mt-2 font-[family-name:var(--font-display)] text-[32px] leading-9 font-semibold tabular-nums">{value}</div>
+      <div className="mt-2 font-[family-name:var(--font-display)] text-[28px] leading-9 font-semibold tabular-nums sm:text-[32px]">{value}</div>
       {hint && <div className="mt-1 text-xs text-muted">{hint}</div>}
     </div>
   );
@@ -100,7 +100,7 @@ export function ErrorState({ title, detail, onRetry }: { title: string; detail?:
 
 export function SiteSelect({ value, onChange, options }: { value: string; onChange: (v: string) => void; options: { value: string; label: string }[] }) {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)} className="input !w-auto min-w-52" aria-label="Site">
+    <select value={value} onChange={(e) => onChange(e.target.value)} className="input !w-full sm:!w-auto sm:min-w-52" aria-label="Site">
       {options.map((o) => (
         <option key={o.value} value={o.value}>
           {o.label}

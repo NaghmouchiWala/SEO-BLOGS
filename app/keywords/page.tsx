@@ -85,12 +85,12 @@ export default function KeywordsPage() {
         onSubmit={(e) => { e.preventDefault(); run(); }}
         className="mb-6 flex flex-wrap items-center gap-3"
       >
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Seed topic, e.g. intelligence artificielle" className="input !w-auto min-w-80 flex-1" aria-label="Seed topic" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Seed topic, e.g. intelligence artificielle" className="input min-w-0 flex-1 basis-full sm:basis-0 sm:min-w-80" aria-label="Seed topic" />
         <select value={lang} onChange={(e) => setLang(e.target.value as "fr" | "en")} className="input !w-auto" aria-label="Language">
           <option value="fr">Français</option>
           <option value="en">English</option>
         </select>
-        <button type="submit" disabled={loading || q.trim().length < 2} className="btn-primary">
+        <button type="submit" disabled={loading || q.trim().length < 2} className="btn-primary w-full sm:w-auto">
           <Lightbulb size={16} /> {loading ? "Searching..." : "Find ideas"}
         </button>
       </form>
