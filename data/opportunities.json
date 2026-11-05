@@ -1,51 +1,123 @@
 {
   "researchedAt": "2026-11-05",
-  "disclaimer": "These are leads found by web research, not vetted placements. Many Tunisian directories are old or inactive, so check that each site is still active, who it is for and whether links are followed before submitting. Nothing here is a purchase: do not pay for link packages.",
+  "disclaimer": "These are leads, not guaranteed placements. Tunisian directory coverage is thin and often outdated, so each entry says whether the site answered when checked on 2026-11-05. Nothing here is a purchase: do not pay for link packages.",
+  "strategy": {
+    "title": "Where the effort should go",
+    "points": [
+      "Put real link-building effort into two sites: galylio.com (a real company, already the strongest at DR 16) and points.tn (a news outlet). Journalists, partners and directories link to companies and newsrooms, not to template blogs.",
+      "The 10 satellite blogs share the same description and the same kind of content. Almost nobody will link to them, and a network of look-alike sites can be treated as low value by Google. Keep publishing there, but do not spend outreach on them and do not mass-link them to each other or to the flagships.",
+      "The easiest links come first: partners, clients and suppliers who already know you (a 'Nos partenaires' mention costs them one line). Then media. Directories come last because they add little.",
+      "Expect slow results: one editorial link from a real Tunisian outlet moves DR more than dozens of directory entries."
+    ]
+  },
   "groups": [
     {
-      "title": "Business profiles and citations",
-      "intro": "Free, brand-owned profiles. They rarely add much DR on their own, but they confirm your identity to Google and AI answers and are the base of any link profile.",
+      "title": "1. Brand profiles (free, this week)",
+      "intro": "These do not add much DR, but they prove the brand is real to Google and AI answers, and they are required before anyone writes about you.",
       "items": [
-        { "name": "Google Business Profile", "url": "https://business.google.com", "status": "standard", "note": "Free. Use the brand name, website and a French description. Best for any site with a real business behind it." },
-        { "name": "Bing Places for Business", "url": "https://www.bingplaces.com", "status": "standard", "note": "Free, and can import from Google Business Profile." },
-        { "name": "LinkedIn company pages", "url": "https://www.linkedin.com/company/setup/new/", "status": "standard", "note": "One page per brand, linking to the site. Post new articles there." },
-        { "name": "Facebook, X and YouTube brand pages", "url": "https://www.facebook.com/pages/create", "status": "standard", "note": "Link back to each site. Social links are usually nofollow, but they make the brand findable." },
-        { "name": "Crunchbase (company profile)", "url": "https://www.crunchbase.com", "status": "standard", "note": "Worth it for galylio.com and go2code.tn as companies; skip for blogs." }
+        { "id": "galylio-gbp", "name": "Google Business Profile — Galylio", "url": "https://business.google.com", "site": "galylio.com", "status": "standard", "note": "Create or claim it with the exact company name, website and a French description (see the profile kit below). Verify ownership with the code Google sends." },
+        { "id": "galylio-bing", "name": "Bing Places — Galylio", "url": "https://www.bingplaces.com", "site": "galylio.com", "status": "standard", "note": "Can import the Google profile in a few clicks." },
+        { "id": "galylio-social", "name": "Galylio social profiles: add the website link and the same description", "url": "https://linkedin.com/company/galylio", "site": "galylio.com", "status": "standard", "note": "LinkedIn, Facebook, Instagram and X profiles already exist on the site. Check each one links to galylio.com and uses the same name and description." },
+        { "id": "galylio-crunchbase", "name": "Crunchbase — Galylio", "url": "https://www.crunchbase.com", "site": "galylio.com", "status": "standard", "note": "Free company profile. Only add facts you can prove (what it does, location, website)." },
+        { "id": "points-linkedin", "name": "LinkedIn and Facebook pages — Points.tn", "url": "https://www.linkedin.com/company/setup/new/", "site": "points.tn", "status": "standard", "note": "Create one page for the news site and post the best article of the day. Link to https://points.tn in the profile." },
+        { "id": "points-publisher", "name": "Google Publisher Center — add Points.tn", "url": "https://publishercenter.google.com", "site": "points.tn", "status": "verify", "note": "Free. Lets Google know your site is a news publication and its sections. The new About page already gives the transparency Google looks for." },
+        { "id": "points-feedly", "name": "Submit the Points.tn RSS feed to Feedly and similar readers", "url": "https://feedly.com/i/discover", "site": "points.tn", "status": "standard", "note": "Feeds are live at https://points.tn/fr/feed.xml and https://points.tn/en/feed.xml. Readers are a free source of referral visits." }
       ]
     },
     {
-      "title": "Tunisian directories (leads to verify)",
-      "intro": "The research found only a few Tunisian directories and most coverage is old. Verify each one before spending time.",
+      "title": "2. Partners, clients and suppliers (easiest real links)",
+      "intro": "People who already work with you have a reason to link. Send the short message from the outreach templates below.",
       "items": [
-        { "name": "Pages Jaunes Tunisie", "url": "https://www.pagesjaunes.com.tn", "status": "verify", "note": "Well-known Tunisian business directory. Check the listing terms and whether the website link is followed.", "source": "https://ahrefs.com/websites/pagesjaunes.com.tn/competitors" },
-        { "name": "Tunisie Business Directory", "url": "https://www.tunisie-business.net", "status": "verify", "note": "Named as an important regional directory in a local SEO guide for Tunisia. Terms and cost not confirmed.", "source": "https://www.ranktracker.com/blog/a-complete-guide-for-doing-local-seo-in-tunisia/" },
-        { "name": "Pages Maghreb Tunisie", "url": "https://www.kapitalis.com/archive/186-kapital/16231-pages-maghreb-l-annuaire-electronique-des-entreprises-en-tunisie", "status": "old", "note": "Launched around 2011 with free registration. May be inactive: check before anything else.", "source": "https://www.kapitalis.com/archive/186-kapital/16231-pages-maghreb-l-annuaire-electronique-des-entreprises-en-tunisie" },
-        { "name": "Destinali (pan-African directory)", "url": "https://destinali.com", "status": "verify", "note": "Says it has a free listing tier. The comparison article that recommends it is promotional, so judge it yourself.", "source": "https://destinali.com/business-directories/african-business-directories-compared" }
+        { "id": "partners-clients", "name": "Clients and partners of Galylio", "site": "galylio.com", "status": "idea", "note": "List every company that has worked with Galylio. Ask each for a mention on their 'partners', 'references' or case-study page, linking to galylio.com. Offer to write the paragraph for them." },
+        { "id": "partners-go2code", "name": "go2code training partners (universities, schools, employers)", "site": "galylio.com", "status": "idea", "note": "Training centres usually list partner companies and employers. Ask for a partner-page link, and offer a guest talk or a short guide in return." },
+        { "id": "partners-chambers", "name": "Business chambers and associations you belong to", "site": "galylio.com", "status": "verify", "note": "Many chambers and professional associations publish a member directory with a website link. Check whether Galylio is a member or can become one. Membership terms and fees vary, so confirm before paying." },
+        { "id": "unlinked-mentions", "name": "Reclaim mentions that do not link", "site": "galylio.com", "status": "idea", "note": "Search Google for \"Galylio\" and \"Points.tn\" in quotes. When a site names you without a link, send the 'mention without link' template: it is the most successful outreach there is." }
       ]
     },
     {
-      "title": "Media and contributions",
-      "intro": "A link inside a real article on a real publication is worth far more than directory links. Pitch a short idea first, not a finished article.",
+      "title": "3. Media to pitch (answered on 2026-11-05)",
+      "intro": "A link inside a real article is worth far more than directory links. Pitch a short idea first, not a finished article. Contribution rules were not found for most of these: write to their editorial contact.",
       "items": [
-        { "name": "Capmad", "url": "https://www.capmad.com", "status": "verify", "note": "Says it accepts guest articles and gives an editorial contact address. The clearest Tunisian-focused lead found.", "source": "https://www.capmad.com/?p=89186" },
-        { "name": "L'Économiste Maghrébin — Tribunes", "url": "https://www.leconomistemaghrebin.com", "status": "verify", "note": "Publishes opinion pieces from outside authors. Suitable for business and tech-policy angles." },
-        { "name": "Managers.tn", "url": "https://managers.tn", "status": "verify", "note": "Publishes innovation and startup content. No public contribution policy found: send a short pitch through its contact page." },
-        { "name": "WeAreTech Africa", "url": "https://www.wearetech.africa", "status": "verify", "note": "Publishes profiles of Tunisian startups and founders. A good fit if one of your projects has a founder story or product launch.", "source": "https://www.wearetech.africa/en/fils-uk/tech-stars/tunisias-ghassen-menaouar-speeds-up-database-management" }
+        { "id": "media-managers", "name": "Managers.tn", "url": "https://managers.tn", "site": "galylio.com", "status": "verify", "note": "Business and startup media for company leaders. Good fit for an 'AI for Tunisian companies' angle." },
+        { "id": "media-wearetech", "name": "WeAreTech Africa", "url": "https://www.wearetech.africa", "site": "galylio.com", "status": "verify", "note": "Publishes profiles of Tunisian tech founders and startups. Pitch a founder story or product launch.", "source": "https://www.wearetech.africa/en/fils-uk/tech-stars/tunisias-ghassen-menaouar-speeds-up-database-management" },
+        { "id": "media-noqta", "name": "Noqta", "url": "https://noqta.tn", "site": "galylio.com", "status": "verify", "note": "Publishes guides on the Tunisian tech ecosystem. A practical guide or expert quote could earn a mention." },
+        { "id": "media-leaders", "name": "Leaders", "url": "https://www.leaders.com.tn", "site": "galylio.com", "status": "verify", "note": "Tunisian business media. Pitch commentary on AI adoption in Tunisian companies." },
+        { "id": "media-ilboursa", "name": "Ilboursa", "url": "https://www.ilboursa.com", "site": "galylio.com", "status": "verify", "note": "Its founder has spoken about helping entrepreneurs get visibility. Suited to company news." },
+        { "id": "media-economiste", "name": "L'Économiste Maghrébin — Tribunes", "url": "https://www.leconomistemaghrebin.com", "site": "galylio.com", "status": "verify", "note": "Publishes opinion pieces from outside authors on economy and technology." },
+        { "id": "media-capmad", "name": "Capmad", "url": "https://www.capmad.com", "site": "galylio.com", "status": "verify", "note": "Said to accept guest articles. It refused our automated check (HTTP 403), so open it in a normal browser first.", "source": "https://www.capmad.com/?p=89186" },
+        { "id": "media-news", "name": "Kapitalis, Business News, Tunisie Numérique, La Presse", "url": "https://kapitalis.com", "site": "points.tn", "status": "idea", "note": "National outlets. Do not ask them for links to Points.tn; instead become a useful source: send a data point or expert comment for a story they are already covering, and ask to be credited with a link." }
       ]
     },
     {
-      "title": "Pitch angles that earn links",
-      "intro": "Ideas drawn from what the network already does. Each gives a journalist or blogger a reason to link.",
+      "title": "4. Directories (low value, check first)",
+      "intro": "Most Tunisian directories are old. Three well-known ones did not answer at all from our server on 2026-11-05.",
       "items": [
-        { "name": "Original data from your own projects", "status": "idea", "note": "1111.tn price comparisons can become a short study (for example how prices of a product category moved over a year). Data is the easiest thing to get linked." },
-        { "name": "Tunisian angle on global tech news", "status": "idea", "note": "The satellite articles already do this daily. Pick the best three per month and pitch them to the media above as short commentary pieces." },
-        { "name": "Guides for Tunisian businesses", "status": "idea", "note": "Practical guides (selling online, AI tools for small businesses, SEO basics in French) tend to be linked by training centres and business groups." }
+        { "id": "dir-pagesmaghreb", "name": "Pages Maghreb", "url": "https://www.pagesmaghreb.com", "site": "galylio.com", "status": "verify", "note": "Answered. Launched around 2011 with free registration; check the listing is still free and the website link is shown.", "source": "https://www.kapitalis.com/archive/186-kapital/16231-pages-maghreb-l-annuaire-electronique-des-entreprises-en-tunisie" },
+        { "id": "dir-destinali", "name": "Destinali (pan-African directory)", "url": "https://destinali.com", "site": "galylio.com", "status": "verify", "note": "Answered. Says it has a free listing tier. The article that recommends it is promotional, so judge it yourself.", "source": "https://destinali.com/business-directories/african-business-directories-compared" },
+        { "id": "dir-b2b", "name": "Clutch, GoodFirms, Sortlist (service-company directories)", "url": "https://clutch.co", "site": "galylio.com", "status": "verify", "note": "Reputable for agencies and IT service companies. Profiles need real client reviews, so ask existing clients first." },
+        { "id": "dir-dead", "name": "Pages Jaunes Tunisie, Tunisie Business Directory, TN-Blogs", "site": "galylio.com", "status": "old", "note": "pagesjaunes.com.tn, tunisie-business.net and tn-blogs.com did not answer on 2026-11-05. Skip unless you confirm in a browser that they are still active." }
       ]
+    },
+    {
+      "title": "5. Content that earns links",
+      "intro": "Give people a reason to link. Without this, outreach rarely works.",
+      "items": [
+        { "id": "asset-case-study", "name": "Galylio client case study", "site": "galylio.com", "status": "idea", "note": "A real before/after with numbers from one client (with their approval). Case studies are what trade media and partners quote." },
+        { "id": "asset-guide", "name": "'AI and automation for Tunisian small businesses' guide", "site": "galylio.com", "status": "idea", "note": "A practical, French-language guide with Tunisian examples and prices. Business groups and training centres link to such guides." },
+        { "id": "asset-data", "name": "Original data from your own projects", "site": "galylio.com", "status": "idea", "note": "1111.tn price comparisons can become a short study (how prices of a product category moved over a year). Data is the easiest thing to get cited." }
+      ]
+    }
+  ],
+  "profiles": [
+    {
+      "site": "galylio.com",
+      "label": "Galylio",
+      "fields": [
+        { "name": "Name", "value": "Galylio" },
+        { "name": "Website", "value": "https://galylio.com" },
+        { "name": "Short description (under 160 characters)", "value": "Galylio développe des solutions d'intelligence artificielle et d'automatisation pour les entreprises en Tunisie." },
+        { "name": "Long description", "value": "Galylio est une entreprise tunisienne spécialisée dans l'intelligence artificielle et l'automatisation. Elle accompagne les entreprises pour gagner du temps et mieux décider grâce à des solutions d'IA adaptées à leurs besoins. Site : https://galylio.com" }
+      ]
+    },
+    {
+      "label": "Points.tn",
+      "site": "points.tn",
+      "fields": [
+        { "name": "Name", "value": "Points.tn" },
+        { "name": "Website", "value": "https://points.tn" },
+        { "name": "Short description (under 160 characters)", "value": "Points.tn : l'actualité de la Tunisie et du monde. National, international, sport, culture, régions et tech." },
+        { "name": "Long description", "value": "Points.tn est un média en ligne qui suit l'actualité de la Tunisie et du monde, en français et en anglais : actualité nationale, international, sport, culture, régions et technologie. Chaque article cite sa source. Points.tn fait partie du réseau Galylio. Site : https://points.tn" }
+      ]
+    }
+  ],
+  "outreach": [
+    {
+      "id": "pitch-media",
+      "title": "Pitch to a media outlet",
+      "when": "Use for the media in section 3. Send to the editorial contact, one outlet at a time, and adapt the angle.",
+      "subject": "Proposition de sujet : [ANGLE EN UNE PHRASE]",
+      "body": "Bonjour [PRÉNOM],\n\nJe suis [VOTRE NOM] de Galylio, une entreprise tunisienne spécialisée en intelligence artificielle et automatisation.\n\nJe vous propose un sujet pour [NOM DU MÉDIA] : [ANGLE : par exemple « comment les PME tunisiennes utilisent déjà l'IA, avec trois exemples chiffrés »].\n\nJe peux vous fournir [UNE DONNÉE, UN CAS CLIENT OU UN AVIS D'EXPERT], et rédiger un texte de [800] mots si le sujet vous intéresse.\n\nSeriez-vous ouvert à en discuter ?\n\nCordialement,\n[VOTRE NOM] — [FONCTION], Galylio\nhttps://galylio.com"
+    },
+    {
+      "id": "link-partner",
+      "title": "Partner, client or supplier: ask for a mention",
+      "when": "Use for section 2. Offer to write the paragraph yourself so it costs them nothing.",
+      "subject": "Une petite mention de notre collaboration ?",
+      "body": "Bonjour [PRÉNOM],\n\nMerci pour notre collaboration sur [PROJET]. Nous préparons notre page références et nous aimerions y citer [VOTRE ENTREPRISE].\n\nSi vous avez une page « partenaires » ou « références », seriez-vous d'accord pour y ajouter une ligne avec un lien vers https://galylio.com ? Voici un texte prêt à copier :\n\n« Galylio — solutions d'intelligence artificielle et d'automatisation en Tunisie. »\n\nJe peux aussi le publier de notre côté pour vous : dites-moi ce qui vous arrange.\n\nMerci d'avance,\n[VOTRE NOM]"
+    },
+    {
+      "id": "unlinked-mention",
+      "title": "Someone named you without a link",
+      "when": "Use for any page that mentions Galylio or Points.tn without linking. Replies are common because the request is tiny.",
+      "subject": "Votre article sur [SUJET] : un lien vers la source ?",
+      "body": "Bonjour [PRÉNOM],\n\nMerci d'avoir cité [Galylio / Points.tn] dans votre article « [TITRE] » ([URL DE L'ARTICLE]).\n\nPourriez-vous ajouter un lien vers [https://galylio.com / https://points.tn] sur le nom ? Cela permet à vos lecteurs de retrouver facilement le site.\n\nMerci beaucoup,\n[VOTRE NOM]"
     }
   ],
   "avoid": [
     "Paid link packages, 'DR 50 backlinks for $20' offers and private blog networks: they are link spam and can lead to penalties.",
     "Mass submission of the same site to hundreds of directories: low value and a spam signal.",
-    "Linking every site of the network to every other one: keep cross-links editorial and relevant."
+    "Linking the satellite blogs to each other or to the flagship sites in bulk: keep cross-links editorial and relevant.",
+    "Exchanging links on a large scale ('link for link') or asking outlets to link to a site they have not written about.",
+    "Putting claims in profiles or pitches that you cannot prove (awards, client names, figures)."
   ]
 }
