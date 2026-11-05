@@ -18,6 +18,7 @@ export function GET() {
     `- Sitemap: ${SITE_URL}/sitemap.xml`,
     `- FAQ: ${SITE_URL}/fr/faq (français), ${SITE_URL}/en/faq (English)`,
     `- About and editorial policy: ${SITE_URL}/fr/about`,
+    `- Directory of the AI ecosystem in Tunisia: ${SITE_URL}/en/ai-ecosystem (français: ${SITE_URL}/fr/ai-ecosystem)`,
     "",
   ];
 

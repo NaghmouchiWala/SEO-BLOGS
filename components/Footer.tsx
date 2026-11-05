@@ -40,6 +40,11 @@ export default function Footer({ locale }: { locale: Locale }) {
                 FAQ
               </Link>
             </li>
+            <li>
+              <Link href={`/${locale}/ai-ecosystem`} className="hover:text-accent">
+                {locale === "fr" ? "Écosystème IA en Tunisie" : "AI ecosystem in Tunisia"}
+              </Link>
+            </li>
           </ul>
         </div>
 

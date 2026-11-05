@@ -131,6 +131,9 @@ export default function Header({ locale }: { locale: Locale }) {
           <Link href={`/${locale}/faq`} className={linkCls}>
             FAQ
           </Link>
+          <Link href={`/${locale}/ai-ecosystem`} className={linkCls}>
+            {locale === "fr" ? "Écosystème IA en Tunisie" : "AI ecosystem in Tunisia"}
+          </Link>
         </nav>
       </aside>
     </>

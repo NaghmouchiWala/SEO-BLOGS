@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/${locale}/blog`, changeFrequency: "daily" as const, priority: 0.8 },
     { url: `${BASE_URL}/${locale}/about`, changeFrequency: "yearly" as const, priority: 0.4 },
     { url: `${BASE_URL}/${locale}/faq`, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${BASE_URL}/${locale}/ai-ecosystem`, changeFrequency: "monthly" as const, priority: 0.6 },
     ...CATEGORIES.map((c) => ({
       url: `${BASE_URL}/${locale}/category/${c.slug}`,
       changeFrequency: "daily" as const,
