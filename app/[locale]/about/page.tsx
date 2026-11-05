@@ -69,6 +69,21 @@ const COPY = {
   },
 } as const;
 
+// "Galylio" is a real company link (one per paragraph, editorial, followed).
+function linkGalylio(text: string) {
+  if (!/réseau Galylio|Galylio network/.test(text)) return text;
+  const i = text.indexOf("Galylio");
+  return (
+    <>
+      {text.slice(0, i)}
+      <a href="https://galylio.com" target="_blank" rel="noopener">
+        Galylio
+      </a>
+      {text.slice(i + "Galylio".length)}
+    </>
+  );
+}
+
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -102,7 +117,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <section key={s.h}>
               <h2>{s.h}</h2>
               {s.p.map((t) => (
-                <p key={t}>{t}</p>
+                <p key={t}>{linkGalylio(t)}</p>
               ))}
             </section>
           ))}
