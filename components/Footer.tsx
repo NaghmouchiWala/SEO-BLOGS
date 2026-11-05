@@ -35,6 +35,11 @@ export default function Footer({ locale }: { locale: Locale }) {
                 {locale === "fr" ? "À propos" : "About"}
               </Link>
             </li>
+            <li>
+              <Link href={`/${locale}/faq`} className="hover:text-accent">
+                FAQ
+              </Link>
+            </li>
           </ul>
         </div>
 

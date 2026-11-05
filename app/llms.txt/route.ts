@@ -16,6 +16,8 @@ export function GET() {
     "- Publisher: Points.tn (part of the Galylio network: https://galylio.com)",
     "- Languages: French (/fr), English (/en)",
     `- Sitemap: ${SITE_URL}/sitemap.xml`,
+    `- FAQ: ${SITE_URL}/fr/faq (français), ${SITE_URL}/en/faq (English)`,
+    `- About and editorial policy: ${SITE_URL}/fr/about`,
     "",
   ];
 

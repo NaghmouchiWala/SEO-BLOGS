@@ -128,6 +128,9 @@ export default function Header({ locale }: { locale: Locale }) {
           <Link href={`/${locale}/about`} className={linkCls}>
             {locale === "fr" ? "À propos" : "About"}
           </Link>
+          <Link href={`/${locale}/faq`} className={linkCls}>
+            FAQ
+          </Link>
         </nav>
       </aside>
     </>
