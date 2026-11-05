@@ -14,6 +14,9 @@ type Snapshot = {
   plan: { done: string[]; todo: string[] };
 };
 
+type Entry = { links?: number; pages?: number; newSources?: string[]; sources?: string[]; pageRank?: number | null; error?: string };
+type History = { at: string; sites: Record<string, Entry> }[];
+
 const ACTIONS = [
   { href: "/links", icon: Network, title: "Fix internal links", text: "Find pages nobody links to and broken links. Internal links lift UR without needing anyone else." },
   { href: "/opportunities", icon: Link2, title: "Get real backlinks", text: "Researched directories, media and profiles where a genuine link can be earned." },
@@ -23,6 +26,14 @@ const ACTIONS = [
 export default function AuthorityPage() {
   const [snap, setSnap] = useState<Snapshot | null>(null);
   const [err, setErr] = useState("");
+  const [hist, setHist] = useState<History>([]);
+
+  useEffect(() => {
+    fetch("/api/seo/backlinks")
+      .then((r) => r.json())
+      .then((d) => setHist(d.history ?? []))
+      .catch(() => {});
+  }, []);
 
   const load = useCallback(async () => {
     setErr("");
@@ -86,6 +97,56 @@ export default function AuthorityPage() {
           </p>
         </div>
       )}
+
+      <section className="mb-8">
+        <h2 className="text-sm font-semibold">Backlink monitor</h2>
+        <p className="mb-3 text-xs text-muted">
+          Checked automatically every week from Bing Webmaster Tools (inbound links it knows about) and Open PageRank (0–10 authority estimate).
+          {hist.length > 0 && ` Last check: ${new Date(hist[hist.length - 1].at).toLocaleDateString()}.`}
+        </p>
+        {hist.length === 0 ? (
+          <p className="card text-sm text-muted">The first weekly check has not run yet.</p>
+        ) : (
+          <div className="card !p-0 overflow-x-auto">
+            <table className="tbl">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th className="num">Links (Bing)</th>
+                  <th className="num">Change</th>
+                  <th className="num">New this week</th>
+                  <th className="num">Open PageRank</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(hist[hist.length - 1].sites).map(([d, e]) => {
+                  const first = hist[0].sites[d]?.links;
+                  const change = e.links != null && first != null ? e.links - first : null;
+                  return (
+                    <tr key={d}>
+                      <td className="font-[family-name:var(--font-mono)] text-[13px]">{d}</td>
+                      <td className="num">{e.error ? <span className="text-xs text-warn" title={e.error}>not available</span> : e.links ?? "—"}</td>
+                      <td className="num">{change == null ? "—" : change > 0 ? `+${change}` : change}</td>
+                      <td className="num">{e.newSources?.length ?? 0}</td>
+                      <td className="num">{e.pageRank == null ? "—" : e.pageRank.toFixed(2)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {hist.length > 0 && Object.entries(hist[hist.length - 1].sites).some(([, e]) => (e.newSources?.length ?? 0) > 0) && (
+          <div className="card mt-3">
+            <h3 className="mb-2 text-sm font-semibold text-success">New links found</h3>
+            <ul className="space-y-1 text-xs">
+              {Object.entries(hist[hist.length - 1].sites).flatMap(([d, e]) => (e.newSources ?? []).map((u) => (
+                <li key={d + u} className="break-all"><span className="font-[family-name:var(--font-mono)] text-muted">{d}</span> ← {u}</li>
+              )))}
+            </ul>
+          </div>
+        )}
+      </section>
 
       <h2 className="mb-3 text-sm font-semibold">What to do next</h2>
       <div className="mb-8 grid gap-4 md:grid-cols-3">

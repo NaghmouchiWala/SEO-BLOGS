@@ -42,3 +42,4 @@ next-env.d.ts
 .ahrefs-cache.json
 .search-cache.json
 .backlink-tracker.json
+.backlink-history.json
