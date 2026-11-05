@@ -10,3 +10,16 @@ fraud-detection.jpg       — Zulfugar Karimov  — https://unsplash.com/photos/
 cybersecurity-certs.jpg   — Albert Stoynov    — https://unsplash.com/photos/dyUp7WPu5q4
 price-comparison.jpg      — NSYS Group        — https://unsplash.com/photos/ZvhZBzwmLic
 geo-ai-search.jpg         — kuu akura         — https://unsplash.com/photos/pnK6Q-QTHM4
+
+amd-double-son-chiffre-daffaires-data-centre-le-gaming-seffondre.jpg: Photo by Alexandre Debiève on Unsplash (https://unsplash.com/photos/macro-photography-of-black-circuit-board-FO7JIlwjOtU)
+amds-data-center-surge-offsets-gaming-slump-in-record-134b-quarter.jpg: Photo by Alexandre Debiève on Unsplash (https://unsplash.com/photos/macro-photography-of-black-circuit-board-FO7JIlwjOtU)
+apple-watch-teste-lia-pour-rejouer-et-resumer-vos-conversations.jpg: Photo by Luke Chesser on Unsplash (https://unsplash.com/photos/person-wearing-silver-aluminium-case-apple-watch-with-white-sports-band-vCF5sB7QecM)
+apple-watch-introduces-ai-powered-conversation-recall-in-beta.jpg: Photo by Luke Chesser on Unsplash (https://unsplash.com/photos/person-wearing-silver-aluminium-case-apple-watch-with-white-sports-band-vCF5sB7QecM)
+comment-lautomatisation-des-paiements-faconne-la-confiance-des-tunisie.jpg: Photo by Markus Winkler on Unsplash (https://unsplash.com/photos/black-business-credit-card-ahjzVINkuCs)
+how-payment-automation-shapes-trust-among-tunisian-shoppers.jpg: Photo by Markus Winkler on Unsplash (https://unsplash.com/photos/black-business-credit-card-ahjzVINkuCs)
+lessor-de-lia-open-source-qui-tire-reellement-profit.jpg: Photo by Chris Ried on Unsplash (https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-code-on-it-ieic5Tq8YMk)
+opensource-ai-takes-off-how-companies-turn-free-models-into-profit.jpg: Photo by Chris Ried on Unsplash (https://unsplash.com/photos/a-computer-screen-with-a-bunch-of-code-on-it-ieic5Tq8YMk)
+voltaautodoxer-le-nouveau-malware-ia-qui-collecte-toutes-vos-donnees.jpg: Photo by FlyD on Unsplash (https://unsplash.com/photos/red-padlock-on-black-computer-keyboard-mT7lXZPjk7U)
+ai-powered-volta-autodoxer-malware-targets-tunisian-users-with-deep-da.jpg: Photo by FlyD on Unsplash (https://unsplash.com/photos/red-padlock-on-black-computer-keyboard-mT7lXZPjk7U)
+waymo-et-toyota-unissent-leurs-forces-pour-les-robotaxis-au-japon-et-a.jpg: Photo by Samuele Errico Piccarini on Unsplash (https://unsplash.com/photos/time-lapse-photography-of-man-riding-car-MyjVReZ5GLQ)
+waymo-teams-up-with-toyota-to-deploy-robotaxis-in-japan-and-the-uk.jpg: Photo by Samuele Errico Piccarini on Unsplash (https://unsplash.com/photos/time-lapse-photography-of-man-riding-car-MyjVReZ5GLQ)
