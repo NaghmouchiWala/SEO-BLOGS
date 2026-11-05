@@ -104,6 +104,11 @@ export default function AuthorityPage() {
           Checked automatically every week from Bing Webmaster Tools (inbound links it knows about) and Open PageRank (0–10 authority estimate).
           {hist.length > 0 && ` Last check: ${new Date(hist[hist.length - 1].at).toLocaleDateString()}.`}
         </p>
+        <p className="mb-3 rounded-lg border border-border bg-surface-2 p-3 text-xs text-muted">
+          A 0 does not mean something is broken. It means Bing has not found any other website linking to that domain yet. These sites are new, and Bing only reports links it has crawled, so it
+          lags behind other tools (the DR/UR checker above already sees a few links on some sites). Links only appear once real websites link to you, which is what the{" "}
+          <Link href="/opportunities" className="text-accent hover:underline">Link opportunities</Link> checklist is for. galylio.com shows “not available” until it is added to Bing Webmaster Tools.
+        </p>
         {hist.length === 0 ? (
           <p className="card text-sm text-muted">The first weekly check has not run yet.</p>
         ) : (

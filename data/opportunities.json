@@ -62,6 +62,7 @@
       "title": "5. Content that earns links",
       "intro": "Give people a reason to link. Without this, outreach rarely works.",
       "items": [
+        { "id": "asset-ecosystem", "name": "Share the 'AI ecosystem in Tunisia' directory with the organisations it lists", "url": "https://points.tn/fr/ai-ecosystem", "site": "points.tn", "status": "idea", "note": "Live on points.tn (French and English). Each organisation listed has a reason to link to or share it. Tell the ones you have already written to, or post it on LinkedIn tagging them. Do not ask for links in return." },
         { "id": "asset-case-study", "name": "Galylio client case study", "site": "galylio.com", "status": "idea", "note": "A real before/after with numbers from one client (with their approval). Case studies are what trade media and partners quote." },
         { "id": "asset-guide", "name": "'AI and automation for Tunisian small businesses' guide", "site": "galylio.com", "status": "idea", "note": "A practical, French-language guide with Tunisian examples and prices. Business groups and training centres link to such guides." },
         { "id": "asset-data", "name": "Original data from your own projects", "site": "galylio.com", "status": "idea", "note": "1111.tn price comparisons can become a short study (how prices of a product category moved over a year). Data is the easiest thing to get cited." }
