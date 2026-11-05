@@ -32,3 +32,15 @@ Runs on the VPS via PM2, reverse-proxied by Nginx at `satellite.galylio.com`.
 See `/home/ubuntu/satellite-dashboard/` on the VPS. Reads/writes the live
 site files directly (points.tn's MDX content + the 10 static sites' HTML) —
 no database, no build step for content changes.
+
+## Authority and backlinks
+
+- `/authority` shows DR/UR per site (`data/authority-snapshot.json`) and a
+  Backlink monitor. A 0 in the monitor means Bing has not found any external
+  site linking to that domain yet; it is not an error.
+- `/opportunities` is the backlink playbook: strategy, task progress tracker,
+  profile kit and outreach templates (`data/opportunities.json`). Progress is
+  stored in `.backlink-tracker.json` (git-ignored).
+- `scripts/backlink-snapshot.mjs` runs weekly on the VPS (cron, Monday 07:30).
+  It reads Bing link counts and Open PageRank and appends to
+  `.backlink-history.json` (git-ignored).
