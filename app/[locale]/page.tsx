@@ -30,8 +30,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
       languages: { fr: `${SITE_URL}/fr`, en: `${SITE_URL}/en` },
+      types: { "application/rss+xml": `${SITE_URL}/${locale}/feed.xml` },
     },
     openGraph: {
+      images: [{ url: `${SITE_URL}/images/og-default.png`, width: 1200, height: 630 }],
       title,
       description,
       url: `${SITE_URL}/${locale}`,

@@ -33,6 +33,8 @@ export async function generateMetadata({
   const article = getArticle(locale, slug);
   if (!article) return {};
   const cover = coverForArticle(article.slug, article.category);
+  // Social networks and search engines do not accept SVG share images.
+  const shareImage = cover.endsWith(".svg") ? "/images/og-default.png" : cover;
   return {
     title: { absolute: seoTitle(article.title) },
     description: seoDescription(article.description),
@@ -55,7 +57,7 @@ export async function generateMetadata({
       publishedTime: article.date,
       modifiedTime: article.updated ?? article.date,
       tags: article.tags,
-      images: [{ url: `${SITE_URL}${cover}` }],
+      images: [{ url: `${SITE_URL}${shareImage}` }],
       siteName: "Points.tn",
       locale: locale === "fr" ? "fr_FR" : "en_US",
     },
@@ -63,7 +65,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: [`${SITE_URL}${cover}`],
+      images: [`${SITE_URL}${shareImage}`],
     },
   };
 }
@@ -97,6 +99,8 @@ export default async function ArticlePage({
     .filter((a) => a.slug !== slug)
     .slice(0, 3);
   const cover = coverForArticle(article.slug, article.category);
+  // Social networks and search engines do not accept SVG share images.
+  const shareImage = cover.endsWith(".svg") ? "/images/og-default.png" : cover;
   const pageUrl = `${SITE_URL}/${loc}/blog/${slug}`;
 
   const wordCount = article.content.split(/\s+/).filter(Boolean).length;
@@ -108,7 +112,7 @@ export default async function ArticlePage({
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     headline: article.title,
     description: article.description,
-    image: `${SITE_URL}${cover}`,
+    image: `${SITE_URL}${shareImage}`,
     datePublished: article.date,
     dateModified: article.updated ?? article.date,
     inLanguage: loc === "fr" ? "fr-FR" : "en-US",
