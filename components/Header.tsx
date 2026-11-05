@@ -125,6 +125,9 @@ export default function Header({ locale }: { locale: Locale }) {
           <Link href={`/${locale}/blog`} className={linkCls}>
             {dict.news.allArticles}
           </Link>
+          <Link href={`/${locale}/about`} className={linkCls}>
+            {locale === "fr" ? "À propos" : "About"}
+          </Link>
         </nav>
       </aside>
     </>

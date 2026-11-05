@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = locales.flatMap((locale) => [
     { url: `${BASE_URL}/${locale}`, changeFrequency: "daily" as const, priority: 1 },
     { url: `${BASE_URL}/${locale}/blog`, changeFrequency: "daily" as const, priority: 0.8 },
+    { url: `${BASE_URL}/${locale}/about`, changeFrequency: "yearly" as const, priority: 0.4 },
     ...CATEGORIES.map((c) => ({
       url: `${BASE_URL}/${locale}/category/${c.slug}`,
       changeFrequency: "daily" as const,
